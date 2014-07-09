@@ -2,6 +2,10 @@
   "name": "marionette-browserify-gulp-express-starter",
   "version": "0.0.1",
   "description": "Marionette starter with express API using browserify and gulp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dqdinh/marionette-browserify-gulp-express-starter.git"
+  },
   "browser": {
     "jquery": "./bower_components/jquery/jquery.js",
     "underscore": "./bower_components/underscore/underscore.js",
