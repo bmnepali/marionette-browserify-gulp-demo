@@ -25,6 +25,6 @@ routes.init(app, router);
 
 // Start server
 app.listen(port);
-console.log('magic on port: ' + port);
+console.log('Check for magic on port: ' + port);
 
 
