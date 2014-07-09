@@ -35,7 +35,7 @@ Gulp must be installed globally in order to use the command line tools. *You may
 npm install -g gulp
 ```
 
-### Install Compass (if you haven't already)
+### Install Compass
 The gulp-compass module relies on Compass already being installed on your system.
 ```
 gem update --system
@@ -58,8 +58,9 @@ bower install
 gulp
 ```
 
-### Run Express to fake REST API.
+### Run Express to fake a REST API
+Install and start Mongodb.
+Start server.
 ```
-mongod --dbpath ./data/db
 node backend/server.js
 ```
