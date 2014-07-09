@@ -64,3 +64,12 @@ Start server.
 ```
 node backend/server.js
 ```
+
+### Testing Contacts API endpoints
+Note: Replace ':id' with MongoDB id for the PUT and DELETE requests.
+```
+curl http://localhost:3000/api/contacts
+curl -X POST -H 'Content-Type: application/json' -d '{"email":"mail@gmail.com","phone":"215-123-1234","name":{"first":"firstName","last":"lastName"}}' http://localhost:3000/api/contacts
+curl -X PUT -H 'Content-Type: application/json' -d '{"email":"mail@gmail.com","phone":"215-123-1234","name":{"first":"newFirstName","last":"newLastName"}}' http://localhost:3000/api/contacts/:id
+curl -X DELETE -H 'Content-Type: application/json' -d http://localhost:3000/api/contacts/:id
+```

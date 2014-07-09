@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-  Contact = require('./models/contact.js'),
+  Contact = require('./models/contacts.js'),
   md5 = require('MD5');
 
 module.exports = {
