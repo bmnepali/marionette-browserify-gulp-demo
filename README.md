@@ -63,6 +63,7 @@ gulp
 ```
 gulp withMockApi
 ```
+Note: Requires MongoDB running in the backgound.
 
 ### Testing Contacts API endpoints
 ```

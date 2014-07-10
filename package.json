@@ -7,7 +7,7 @@
     "url": "https://github.com/dqdinh/marionette-browserify-gulp-express-starter.git"
   },
   "browser": {
-    "jquery": "./bower_components/jquery/jquery.js",
+    "jquery": "./bower_components/jquery/dist/jquery.js",
     "underscore": "./bower_components/underscore/underscore.js",
     "backbone": "./bower_components/backbone/backbone.js",
     "backbone.wreqr": "./bower_components/backbone.wreqr/lib/backbone.wreqr.js",
