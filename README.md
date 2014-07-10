@@ -1,10 +1,5 @@
-marionette-browserify-gulp-express-starter
+Marionette Browserify Gulp Express Starter
 ============
-
-Sources:
-http://viget.com/extend/gulp-browserify-starter-faq
-http://kroltech.com/2013/12/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/
-http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 
 Includes the following tools, tasks, and workflows:
 
@@ -73,3 +68,8 @@ curl -X PUT -H 'Content-Type: application/json' -d '{"email":"mail@gmail.com","p
 curl -X DELETE -H 'Content-Type: application/json' -d http://localhost:3000/api/contacts/:id
 ```
 Note: Replace ':id' with MongoDB id for the PUT and DELETE requests.
+
+### Sources
+- http://viget.com/extend/gulp-browserify-starter-faq
+- http://kroltech.com/2013/12/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/
+- http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4

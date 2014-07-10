@@ -1,6 +1,6 @@
 $ = require 'jquery'
 App = require './app'
 
-$ ->
-  console.log 'init'
-  App
+$(document).ready ->
+  App.start()
+  console.log 'Started!'
