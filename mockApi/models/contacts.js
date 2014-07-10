@@ -1,3 +1,7 @@
+/*
+  Define mongoDB schema for contacts.
+*/
+
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 

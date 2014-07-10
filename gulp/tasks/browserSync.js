@@ -1,3 +1,7 @@
+/*
+  Refresh browser when build directory is updated.
+*/
+
 var browserSync = require('browser-sync');
 var gulp        = require('gulp');
 

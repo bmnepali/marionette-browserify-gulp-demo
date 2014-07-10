@@ -11,6 +11,7 @@ Includes the following tools, tasks, and workflows:
 - Marionette (from bower)
 - Browserify (with browserify-shim)
 - Watchify (caching version of browserify for super fast rebuilds)
+- Nodemon (reloads mock API server)
 - Compass
 - CoffeeScript (with source mapping!)
 - Handlebars (as a backbone dependency)
@@ -62,7 +63,7 @@ gulp
 Install and start Mongodb.
 Start server.
 ```
-node backend/server.js
+node mockApi/server.js
 ```
 
 ### Testing Contacts API endpoints

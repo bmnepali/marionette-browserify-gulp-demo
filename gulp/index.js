@@ -1,3 +1,7 @@
+/*
+  Loop through Gulp task directory and require all tasks
+*/
+
 var fs = require('fs');
 var onlyScripts = require('./util/scriptFilter');
 var tasks = fs.readdirSync('./gulp/tasks/').filter(onlyScripts);

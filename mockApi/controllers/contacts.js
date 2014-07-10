@@ -1,3 +1,7 @@
+/*
+  Define CRUD controller actions.
+*/
+
 var Contact = require('../models/contacts'),
   md5 = require('MD5');
 

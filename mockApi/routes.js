@@ -1,3 +1,7 @@
+/*
+  Set up routes for mock API.
+*/
+
 var contacts = require('./controllers/contacts');
 
 module.exports.init = function(app, router) {

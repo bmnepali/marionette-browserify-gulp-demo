@@ -1,3 +1,7 @@
+/*
+  Seed mongoDB with contacts if none exists.
+*/
+
 var express = require('express'),
   mongoose = require('mongoose'),
   app = express(),

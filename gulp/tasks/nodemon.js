@@ -1,9 +1,13 @@
+/*
+  Watch for changes in the mock API server and reload the node server.
+*/
+
 var gulp = require('gulp'),
   nodemon = require('gulp-nodemon');
 
 gulp.task('nodemon', function() {
   nodemon({
-    script: './backend/server.js',
+    script: './mockApi/server.js',
     ext: 'js',
     env: {
       'NODE_ENV': 'development'

@@ -1,3 +1,7 @@
+/*
+  Seed mongoDB with contacts if none exists.
+*/
+
 var mongoose = require('mongoose'),
   Contact = require('./models/contacts.js'),
   md5 = require('MD5');
