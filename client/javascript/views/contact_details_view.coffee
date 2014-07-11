@@ -13,7 +13,5 @@ module.exports = class ContactDetailsView extends Marionette.ItemView
     e.preventDefault()
     console.log 'deleting contact'
     Contacts.remove(@model)
-
     @model.destroy()
-
     ContactsController.home()
