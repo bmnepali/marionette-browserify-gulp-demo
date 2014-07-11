@@ -73,3 +73,6 @@ Note: Replace ':id' with MongoDB id for the PUT and DELETE requests.
 - http://viget.com/extend/gulp-browserify-starter-faq
 - http://kroltech.com/2013/12/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/
 - http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
+- https://github.com/davidsulc/marionette-gentle-introduction
+- https://github.com/davidsulc/marionette-serious-progression-app
+- https://github.com/davidsulc/structuring-backbone-with-requirejs-and-marionette

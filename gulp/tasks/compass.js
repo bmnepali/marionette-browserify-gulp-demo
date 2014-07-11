@@ -8,11 +8,11 @@ var notify       = require('gulp-notify');
 var handleErrors = require('../util/handleErrors');
 
 gulp.task('compass', function() {
-  return gulp.src('./client/sass/*.sass')
+  return gulp.src('./client/css/*.sass')
     .pipe(compass({
       config_file: 'compass.rb',
       css: 'build',
-      sass: 'client/sass'
+      sass: 'client/css'
     }))
     .on('error', handleErrors);
 });

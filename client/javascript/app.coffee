@@ -1,14 +1,19 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
+ContactsController = require './controllers/contacts_controller'
+Router = require './router'
+ContactModel = require './models/contact'
+ContactsCollection = require './collections/contacts'
 
 App = new Marionette.Application()
 
 App.on 'before:start', (options) ->
-  console.log 'Executing things before start'
-
-App.vent.bind 'app:start', (options) ->
+  console.log 'App Initializing!'
   if Backbone.history
-    console.log 'App: Backbone history starting'
+    @controller = new ContactsController()
+    @router = new Router {@controller}
+    console.log 'App: Backbone history starting!'
     Backbone.history.start()
+    window.ctrl = @controller
 
 module.exports = App

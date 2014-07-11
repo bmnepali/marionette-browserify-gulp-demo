@@ -5,7 +5,7 @@
 var express = require('express'),
   mongoose = require('mongoose'),
   app = express(),
-  port = process.env.PORT || 3000,
+  port = process.env.PORT || 3300,
   router = express.Router(),
   routes = require('./routes'),
   seeder = require('./seeder'),
@@ -14,6 +14,14 @@ var express = require('express'),
 
 // set app to parse application/json.
 app.use(bodyParser.json());
+
+// Allowing CORS on ExpressJS
+// source -- http://enable-cors.org/server_expressjs.html
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 //connect to the db server:
 mongoose.connect('mongodb://localhost/MyApp');
@@ -29,6 +37,6 @@ routes.init(app, router);
 
 // Start server
 app.listen(port);
-console.log('Check for magic on port: ' + port);
+console.log('Check for magic on localhost with port: ' + port);
 
 

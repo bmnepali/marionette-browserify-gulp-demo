@@ -5,6 +5,6 @@
 var gulp = require('gulp');
 
 gulp.task('copy', function() {
-  return gulp.src('client/htdocs/**')
+  return gulp.src('client/html/**')
     .pipe(gulp.dest('build'));
 });
