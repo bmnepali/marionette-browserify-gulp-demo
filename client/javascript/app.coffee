@@ -1,16 +1,11 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
-ContactsController = require './controllers/contacts_controller'
-Router = require './router'
 
-App = new Marionette.Application()
+ContactManager = new Marionette.Application()
 
-App.on 'before:start', (options) ->
-  if Backbone.history
-    @controller = ContactsController
-    @router = new Router {@controller}
-    console.log 'App: Backbone history starting!'
-    Backbone.history.start()
-    window.contactsController = @controller
+ContactManager.addRegions(
+  headerRegion: '#header-region'
+  mainRegion: '#main-region'
+)
 
-module.exports = App
+module.exports = ContactManager
