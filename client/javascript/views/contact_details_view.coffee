@@ -1,6 +1,5 @@
 Marionette = require 'backbone.marionette'
-ContactsController = require '../controllers/contacts_controller'
-Contacts = require '../collections/contacts'
+# ContactsController = require '../controllers/contacts_controller'
 
 module.exports = class ContactDetailsView extends Marionette.ItemView
   template: require './templates/contact_details'
@@ -11,7 +10,11 @@ module.exports = class ContactDetailsView extends Marionette.ItemView
 
   goBack: (e) ->
     e.preventDefault()
+    # ContactsController.home()
+    window.contactsController.home()
+
+  deleteContact: (e) ->
+    e.preventDefault()
     console.log 'deleting contact'
-    Contacts.remove(@model)
+    @collection.remove(@model)
     @model.destroy()
-    ContactsController.home()

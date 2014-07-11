@@ -1,4 +1,5 @@
 Marionette = require 'backbone.marionette'
+# ContactsController = require '../controllers/contacts_controller'
 
 module.exports = class ContactView extends Marionette.ItemView
   template: require './templates/contact'
@@ -10,4 +11,6 @@ module.exports = class ContactView extends Marionette.ItemView
     'click': 'showDetails'
 
   showDetails: ->
-    ContactsController.details(@model.id)
+    # ContactsController.details(@model.id)
+    window.contactsController.details(@model.id)
+

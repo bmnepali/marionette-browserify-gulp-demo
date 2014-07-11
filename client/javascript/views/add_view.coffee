@@ -1,6 +1,6 @@
 Marionette = require 'backbone.marionette'
 Contacts = require '../collections/contacts'
-ContactsController = require '../controllers/contacts_controller'
+# ContactsController = require '../controllers/contacts_controller'
 
 module.exports = class AddView extends Marionette.ItemView
   template: require './templates/add'
@@ -9,6 +9,7 @@ module.exports = class AddView extends Marionette.ItemView
     'click a.save-button': 'save'
 
   save: (e) ->
+    window.cnt = Contacts
     e.preventDefault()
     newContact =
       name:
@@ -16,7 +17,7 @@ module.exports = class AddView extends Marionette.ItemView
         last: @$el.find('#name_last').val()
       email: @$el.find('#email').val()
       phone: @$el.find('#phone').val()
-
-    Contacts.create(newContact)
-
-    ContactsController.home()
+    @collection.create(newContact)
+    console.log 'contact saved'
+    # ContactsController.home()
+    window.contactsController.home()

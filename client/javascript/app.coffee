@@ -7,10 +7,10 @@ App = new Marionette.Application()
 
 App.on 'before:start', (options) ->
   if Backbone.history
-    @controller = new ContactsController()
+    @controller = ContactsController
     @router = new Router {@controller}
     console.log 'App: Backbone history starting!'
     Backbone.history.start()
-    window.ctlr = @controller
+    window.contactsController = @controller
 
 module.exports = App
