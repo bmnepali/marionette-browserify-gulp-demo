@@ -7,6 +7,7 @@
     "url": "https://github.com/dqdinh/marionette-browserify-gulp-express-starter.git"
   },
   "browser": {
+    "bootstrap-sass": "~3.0.2",
     "jqueryui": "./client/javascript/vendor/jquery-ui-browserify-shimmed.js",
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "jquery.spin": "./bower_components/spin.js/jquery.spin.js",

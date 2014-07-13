@@ -1,25 +1,35 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
+ContactsRouter = require './routers/contacts_router'
+ContactsController = require './controllers/contacts_controller'
 
-ContactManager = new Marionette.Application()
+App = new Marionette.Application()
 
-ContactManager.addRegions(
+App.addRegions(
   headerRegion: '#header-region'
   mainRegion: '#main-region'
 )
 
-ContactManager.navigate = (router, options) ->
+App.navigate = (router, options) ->
   options or (options = {})
   Backbone.history.navigate(router, options)
 
-ContactManager.getCurrentRoute = ->
+App.getCurrentRoute = ->
   Backbone.history.fragment
 
-ContactManager.on('start', ->
+App.addInitializer( ->
+  App.contactsController = new ContactsController()
+  App.contactsRouter = new ContactsRouter(
+    controller: App.contactsController
+  )
+)
+
+App.on('start', ->
   if Backbone.history
     Backbone.history.start()
 
-    if ContactManager.getCurrentRoute() is ""
-      ContactManager.trigger('contacts:list')
+    if App.getCurrentRoute() is ""
+      App.contactsController.listContacts()
+)
 
-module.exports = ContactManager
+module.exports = App
