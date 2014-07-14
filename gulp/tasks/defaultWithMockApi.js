@@ -4,4 +4,4 @@
 
 var gulp = require('gulp');
 
-gulp.task('withMockApi', ['watch', 'nodemon']);
+gulp.task('withMockApi', ['watch', 'nodemon', 'test']);

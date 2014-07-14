@@ -9,5 +9,6 @@ gulp.task('watch', ['setWatch', 'browserSync'], function() {
   gulp.watch('client/css/**', ['compass']);
   gulp.watch('client/images/**', ['images']);
   gulp.watch('client/html/**', ['copy']);
+  gulp.watch(['client/javascript/**/*.coffee', 'mockApi/**/*.js', 'tests/**/*.js'], ['test']);
   // Note: The browserify task handles js recompiling with watchify
 });

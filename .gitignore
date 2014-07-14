@@ -1,5 +1,6 @@
 .DS_Store
 .sass-cache
+npm-debug.log
 build
 Desktop.ini
 node_modules
