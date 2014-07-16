@@ -1,12 +1,12 @@
 module.exports = {
     "jquery": "$",
     "spin":"spin",
-    "underscore": "_",
+    "lodash": "_",
     "backbone": {
         "exports": "Backbone",
         "depends": {
            "jquery":"$",
-           "underscore":"_"
+           "lodash":"_"
         }
     },
     "jquery.spin": {

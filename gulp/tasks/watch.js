@@ -5,10 +5,10 @@
 
 var gulp = require('gulp');
 
-gulp.task('watch', ['setWatch', 'browserSync'], function() {
+gulp.task('watch', ['setWatch', 'browserSync', 'test'], function() {
   gulp.watch('client/css/**', ['compass']);
   gulp.watch('client/images/**', ['images']);
   gulp.watch('client/html/**', ['copy']);
-  gulp.watch(['client/javascript/**/*.coffee', 'mockApi/**/*.js', 'tests/**/*.js'], ['test']);
+  gulp.watch(['client/javascript/**/*.coffee', 'mockApi/**/*.js', 'test/**/*.coffee'], ['test']);
   // Note: The browserify task handles js recompiling with watchify
 });

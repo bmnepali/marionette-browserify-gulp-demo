@@ -1,13 +1,22 @@
 /*
-  Run tests using tape and show output using faucet.
+  Run tests using karma.
 */
 
 var gulp = require('gulp');
-var shell = require('gulp-shell');
+var _ = require('lodash');
+var karma = require('karma').server;
+var karmaCommonConf = require('../../karma.conf.js');
 
-gulp.task('test', function () {
-  return gulp.src('tests/*.js', {read: false})
-    .pipe(shell([
-      'tape tests/* | faucet'
-    ]))
-})
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  karma.start(_.assign({}, karmaCommonConf, {singleRun: true}), done);
+});
+
+/**
+ * Watch for file changes and re-run tests on each change
+ */
+gulp.task('tdd', function (done) {
+  karma.start(karmaCommonConf, done);
+});
