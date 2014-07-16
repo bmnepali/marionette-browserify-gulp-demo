@@ -66,7 +66,7 @@ Note: Requires MongoDB running in the backgound.
 Make sure you've required all your tests in 'test/runner.coffee'.
 If this is the first run, then you need to bundle the tests.
 ```
-gulp withMockApi
+gulp browserifyTests
 ```
 All subsequent runs, just call gulp and it will run tests
 and watch for changes in the client and test directories.
