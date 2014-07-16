@@ -51,14 +51,11 @@
     "lodash": "*",
     "karma": "*",
     "karma-jasmine": "*",
-    "phantomjs": "*",
     "karma-coverage": "*",
     "karma-phantomjs-launcher": "*",
-    "karma-commonjs": "*",
     "karma-mocha-reporter": "*",
-    "karma-coffee-preprocessor": "*",
-    "karma-browserify": "*",
-    "assert": "*",
+    "karma-chai": "*",
+    "karma-mocha": "*",
     "pretty-hrtime": "~0.2.1"
   },
   "dependencies": {

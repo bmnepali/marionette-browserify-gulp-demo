@@ -16,6 +16,8 @@ Includes the following tools, tasks, and workflows:
 - Image optimization
 - Error Notifications in Notification Center
 - Express (from npm)
+- Karma with Mocha tests using Browserify to bundle a test runner.
+- Test coverage using Istanbul through Karma-coverage.
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
@@ -59,6 +61,18 @@ gulp
 gulp withMockApi
 ```
 Note: Requires MongoDB running in the backgound.
+
+### Run gulp with Tests / Coverage Reports
+Make sure you've required all your tests in 'test/runner.coffee'.
+If this is the first run, then you need to bundle the tests.
+```
+gulp withMockApi
+```
+All subsequent runs, just call gulp and it will run tests
+and watch for changes in the client and test directories.
+```
+gulp
+```
 
 ### Testing Contacts API endpoints
 ```

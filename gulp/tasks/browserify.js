@@ -13,7 +13,7 @@ var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 
-gulp.task('browserifyProduction', function() {
+gulp.task('browserify', function() {
 
   var bundleMethod = global.isWatching ? watchify : browserify;
 

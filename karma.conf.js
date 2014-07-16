@@ -1,31 +1,25 @@
 module.exports = {
-// module.exports = function(config) {
-  // config.set({
   // base path, that will be used to resolve files and exclude
   basePath: '.',
 
-  frameworks: ['jasmine'],
-  // frameworks: ['jasmine', 'browserify'],
+  frameworks: ['mocha', 'chai'],
 
   // list of files / patterns to load in the browser
   files: [
-    // 'build/test/app.js'
     'build/test/app.js'
   ],
 
-  // list of files to exclude
+  // List of files to exclude.
   // exclude: [
   //   'client/javascript/initialize.js'
   // ],
 
+  // Add preprocessors.
   preprocessors: {
-    // '**/*.coffee': ['coffee']
-    // 'test/**/*': ['browserify'],
-    // 'client/javascript/**/*': ['browserify']
-    // '**/*.js': ['commonjs']
-    // 'client/javascript/**/*.js': ['commonjs', 'coverage'],
-    // 'client/javascript/demo/**/*.coffee': ['coffee', 'commonjs', 'coverage'],
-    // 'test/client/**/*.coffee': ['coffee', 'commonjs', 'coverage']
+  // source files, that you wanna generate coverage for
+  // do not include tests or libraries
+  // (these files will be instrumented by Istanbul)
+    'client/**/*.coffee': ['coverage']
   },
 
   // use dots reporter, as travis terminal does not support escaping sequences
@@ -64,39 +58,21 @@ module.exports = {
   // Auto run tests on start (when browsers are captured) and exit
   // CLI --single-run --no-single-run
   singleRun: false,
+  // optionally, configure the reporter
+  coverageReporter: {
+  type : 'text',
+    dir : 'coverage/'
+  },
 
   // report which specs are slower than 500ms
   // CLI --report-slower-than 500
   reportSlowerThan: 500,
 
-  // coffeePreprocessor: {
-  //   // options passed to the coffee compiler
-  //   options: {
-  //     bare: true,
-  //     sourceMap: false
-  //   },
-  //   // transforming the filenames
-  //   transformPath: function(path) {
-  //     return path.replace(/\.coffee$/, '.js');
-  //   }
-  // },
-
-  // browserify: {
-  //   extensions: ['.coffee'],
-  //   transform: ['coffeeify'],
-  //   watch: true,
-  //   debug: true
-  // },
-
   plugins: [
-    'karma-jasmine',
+    'karma-mocha',
+    'karma-chai',
     "karma-coverage",
-    // "karma-browserify",
-    "karma-coffee-preprocessor",
     "karma-phantomjs-launcher",
     "karma-mocha-reporter",
-    'karma-commonjs'
   ]
 };
-                // });
-                //   };

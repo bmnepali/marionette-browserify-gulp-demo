@@ -13,14 +13,13 @@ var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 
-gulp.task('browserifyDevelopment', function() {
+gulp.task('browserifyTests', function() {
 
   var bundleMethod = global.isWatching ? watchify : browserify;
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    // entries: ['./client/javascript/initialize.coffee'],
-    entries: ['./test/client/demo/runner.coffee'],
+    entries: ['./test/initialize.coffee'],
     // Add file extentions to make optional in your requires
     extensions: ['.coffee', '.hbs']
   });
