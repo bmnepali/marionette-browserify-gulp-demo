@@ -2,10 +2,12 @@ Marionette = require 'backbone.marionette'
 TodoLayout = require './views/layout/layout'
 TodosCollection = require './models/todos'
 
+lala = new TodosCollection
+console.log lala.localStorage
 
 module.exports = class TodoController extends Marionette.Controller
   onStart: ->
-    @todosCollection = new TodosCollection()
+    @todosCollection = new TodosCollection
     @todosLayout = new TodoLayout {@todosCollection}
 
     onSuccess = ( ->
@@ -14,5 +16,5 @@ module.exports = class TodoController extends Marionette.Controller
     @todosCollection.fetch(success: onSuccess)
 
   filterItems: (filter) ->
-    filter = filter and filter.trim() or 'all
+    filter = (filter and filter.trim() or 'all')
     @todosLayout.updateFilter(filter)
