@@ -1,14 +1,11 @@
 Marionette = require 'backbone.marionette'
-TodoLayout = require './views/layout/layout'
+TodosLayout = require './views/layout/layoutView'
 TodosCollection = require './models/todos'
-
-lala = new TodosCollection
-console.log lala.localStorage
 
 module.exports = class TodoController extends Marionette.Controller
   onStart: ->
     @todosCollection = new TodosCollection
-    @todosLayout = new TodoLayout {@todosCollection}
+    @todosLayout = new TodosLayout {@todosCollection}
 
     onSuccess = ( ->
       @options.todoRegion.show(@todosLayout)

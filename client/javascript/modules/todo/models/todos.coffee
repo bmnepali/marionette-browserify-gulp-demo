@@ -13,6 +13,7 @@ module.exports = class Todos extends Backbone.Collection
   getActive: ->
     @reject(@isCompleted)
 
+  # Sort item list by date created.
   comparator: (todo) ->
     todo.get('created')
 
