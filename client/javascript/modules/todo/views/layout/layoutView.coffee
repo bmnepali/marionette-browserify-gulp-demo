@@ -1,9 +1,9 @@
 Marionette = require 'backbone.marionette'
 HeaderView = require './headerView'
 FooterView = require './footerView'
-TodosView = require '../todos/collection_view'
+TodosCollectionView = require '../todos/collection_view'
 
-module.exports = class LayoutView extends Marionette.Layout
+module.exports = class LayoutView extends Marionette.LayoutView
   template: require '../templates/layout'
 
   ui:
@@ -23,4 +23,4 @@ module.exports = class LayoutView extends Marionette.Layout
 
     @header.show(new HeaderView(options))
     @footer.show(new FooterView(options))
-    @main.show(new TodosView(options))
+    @main.show(new TodosCollectionView(options))

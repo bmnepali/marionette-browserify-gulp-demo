@@ -3,7 +3,7 @@ TodosLayout = require './views/layout/layoutView'
 TodosCollection = require './models/todos'
 
 module.exports = class TodoController extends Marionette.Controller
-  onStart: ->
+  initialize: ->
     @todosCollection = new TodosCollection
     @todosLayout = new TodosLayout {@todosCollection}
 
@@ -12,6 +12,6 @@ module.exports = class TodoController extends Marionette.Controller
     ).bind(@)
     @todosCollection.fetch(success: onSuccess)
 
-  filterItems: (filter) ->
+  filterItems: (filter) =>
     filter = (filter and filter.trim() or 'all')
     @todosLayout.updateFilter(filter)

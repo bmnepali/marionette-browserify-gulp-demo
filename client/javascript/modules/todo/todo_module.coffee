@@ -11,10 +11,10 @@ module.exports = class TodoModule extends Marionette.Module
     @addRegion()
     @startMediator()
 
-  # onStop: ->
-  #   @stopMediator()
-  #   @removeRegion()
-  #   @destroyContainer()
+  onStop: ->
+    @stopMediator()
+    @removeRegion()
+    @destroyContainer()
 
   createContainer: ->
     node = document.createElement 'div'
@@ -28,12 +28,12 @@ module.exports = class TodoModule extends Marionette.Module
     @controller = new TodoController todoRegion: @app.todoRegion
     router = new TodoRouter {@controller}
 
-  # stopMediator: ->
-  #   @controller.stop()
+  stopMediator: ->
+    @controller.stop()
 
-  # removeRegion: ->
-  #   @app.removeRegion 'todoRegion'
+  removeRegion: ->
+    @app.removeRegion 'todoRegion'
 
-  # destroyContainer: ->
-  #   node = document.getElementById this.todoRegionId
-  #   node?.parentElement.removeChild node
+  destroyContainer: ->
+    node = document.getElementById this.todoRegionId
+    node?.parentElement.removeChild node

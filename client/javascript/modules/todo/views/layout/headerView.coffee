@@ -13,6 +13,7 @@ module.exports = class HeaderView extends Marionette.ItemView
     e.preventDefault()
 
     todoText = @ui.input.val().trim()
+    console.log todoText
     if todoText
       @collection.create(title: todoText)
       @ui.input.val('')
