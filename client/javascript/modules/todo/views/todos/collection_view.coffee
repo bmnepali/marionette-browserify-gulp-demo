@@ -1,12 +1,12 @@
 Marionette = require 'backbone.marionette'
 TodoItemView = require './item_view'
 
-module.exports = class TodoCollectionView extends Marionette.CompositeView
+module.exports = Marionette.CompositeView.extend
   template: require '../templates/todo_collection'
 
-  itemView: TodoItemView
+  childView: TodoItemView
 
-  itemViewContainer: '#todo-list'
+  childViewContainer: '#todo-list'
 
   ui:
     toggle: '#toggle-all'
@@ -22,15 +22,11 @@ module.exports = class TodoCollectionView extends Marionette.CompositeView
   onShow: ->
     @update()
 
-  showCollection: ->
-    @collection
-
   update: ->
-    console.log @options.collection
-    reduceCompleted = (left, right) ->
+    reduceCompleted = (left, right) =>
       left and right.get('completed')
 
-    allCompleted = @options.collection.reduce(reduceCompleted, true)
+    allCompleted = @collection.reduce(reduceCompleted, true)
     @ui.toggle.prop('checked', allCompleted)
     # If the collection contains elements, return true
     @$el.parent().toggle(!!@collection.length)

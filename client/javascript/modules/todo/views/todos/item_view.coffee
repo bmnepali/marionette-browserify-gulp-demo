@@ -1,6 +1,6 @@
 Marionette = require 'backbone.marionette'
 
-module.exports = class TodoItemView extends Marionette.ItemView
+module.exports = Marionette.ItemView.extend
   tagName: 'li'
 
   template: require '../templates/todo_item'

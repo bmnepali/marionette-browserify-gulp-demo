@@ -1,6 +1,7 @@
 Backbone = require 'backbone'
+localStorage = require 'backbone.localstorage'
 
-module.exports = class Todo extends Backbone.Model
+module.exports = Backbone.Model.extend
   defaults:
     title: ''
     completed: false

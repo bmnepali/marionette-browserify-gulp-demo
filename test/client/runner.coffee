@@ -1,2 +1,2 @@
-require "./demo/stringify"
-require "./demo/hello"
+require "./demo_tests/stringify"
+require "./demo_tests/hello"

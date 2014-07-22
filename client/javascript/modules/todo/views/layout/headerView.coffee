@@ -1,6 +1,6 @@
 Marionette = require 'backbone.marionette'
 
-module.exports = class HeaderView extends Marionette.ItemView
+module.exports = Marionette.ItemView.extend
   template: require '../templates/header'
 
   ui:
@@ -13,7 +13,7 @@ module.exports = class HeaderView extends Marionette.ItemView
     e.preventDefault()
 
     todoText = @ui.input.val().trim()
-    console.log todoText
     if todoText
+      console.log @collection
       @collection.create(title: todoText)
       @ui.input.val('')

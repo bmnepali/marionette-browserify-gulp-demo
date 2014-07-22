@@ -2,7 +2,7 @@ Backbone = require 'backbone'
 localStorage = require 'backbone.localstorage'
 Todo = require './todo'
 
-module.exports = class Todos extends Backbone.Collection
+module.exports = Backbone.Collection.extend
   model: Todo
 
   localStorage: new localStorage('todos-module')

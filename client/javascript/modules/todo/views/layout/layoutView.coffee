@@ -3,7 +3,7 @@ HeaderView = require './headerView'
 FooterView = require './footerView'
 TodosCollectionView = require '../todos/collection_view'
 
-module.exports = class LayoutView extends Marionette.LayoutView
+module.exports = Marionette.LayoutView.extend
   template: require '../templates/layout'
 
   ui:

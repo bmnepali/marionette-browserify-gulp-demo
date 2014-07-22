@@ -1,6 +1,6 @@
 Marionette = require 'backbone.marionette'
 
-module.exports = class FooterView extends Marionette.ItemView
+module.exports = Marionette.ItemView.extend
   template: require '../templates/footer'
 
   ui:
@@ -38,6 +38,6 @@ module.exports = class FooterView extends Marionette.ItemView
   onClearClick: ->
     completed = @collection.getCompleted()
     completed.forEach( (todo) ->
-      todo.destory()
+      todo.destroy()
     )
 

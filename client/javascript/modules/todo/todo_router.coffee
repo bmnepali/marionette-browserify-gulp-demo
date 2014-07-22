@@ -1,5 +1,5 @@
 Marionette = require 'backbone.marionette'
 
-module.exports = class TodoRouter extends Marionette.AppRouter
+module.exports = Marionette.AppRouter.extend
   appRoutes:
     '*filter': 'filterItems'
