@@ -11,7 +11,7 @@ module.exports = Marionette.ItemView.extend
   events:
     'click .destroy': 'destroy'
     'click .toggle': 'toggle'
-    'dbclick label': 'onEditClick'
+    'dblclick label': 'onEditClick'
     'keydown @ui.edit': 'onEditKeypress'
     'focusout @ui.edit': 'onEditFocusout'
 
@@ -38,7 +38,7 @@ module.exports = Marionette.ItemView.extend
     @ui.edit.val(@ui.edit.val())
 
   onEditFocusout: ->
-    todoText = @ui.text.val().trim()
+    todoText = @ui.edit.val().trim()
     if todoText
       @model.set('title', todoText).save()
       @$el.removeClass 'editing'
@@ -49,7 +49,7 @@ module.exports = Marionette.ItemView.extend
     ENTER_KEY = 13
     ESC_KEY = 27
     if e.which is ENTER_KEY
-      @onEditFocusout
+      @onEditFocusout()
 
     if e.which is ESC_KEY
       @ui.edit.val(@model.get('title'))

@@ -14,6 +14,5 @@ module.exports = Marionette.ItemView.extend
 
     todoText = @ui.input.val().trim()
     if todoText
-      console.log @collection
       @collection.create(title: todoText)
       @ui.input.val('')
