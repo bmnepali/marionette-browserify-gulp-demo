@@ -64,17 +64,14 @@ Note: Requires MongoDB running in the backgound.
 
 ### Run gulp with Tests / Coverage Reports
 Make sure you've required all your tests in 'test/runner.coffee'.
-If this is the first run, then you need to bundle the tests.
+In a new window, you can run.
+TODO: make this run automatically whenever changes occur in src and client
+code.
 ```
-gulp browserifyTests
-```
-All subsequent runs, just call gulp and it will run tests
-and watch for changes in the client and test directories.
-```
-gulp
+gulp test
 ```
 
-### Testing Contacts API endpoints
+### Testing Mock API endpoints
 ```
 curl http://localhost:3000/api/contacts
 curl -X POST -H 'Content-Type: application/json' -d '{"email":"mail@gmail.com","phone":"215-123-1234","name":{"first":"firstName","last":"lastName"}}' http://localhost:3000/api/contacts
