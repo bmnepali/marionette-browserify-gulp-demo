@@ -1,43 +1,49 @@
-stringify = require "../../../client/javascript/demo/stringify"
+instanceOf = require("./util").instanceOf
 
-describe "stringify", ->
-  it "should serialize string", ->
-    expect(stringify("aaa")).to.equal "'aaa'"
+module.exports = (obj, depth) ->
+  return "..."  if depth is 0
+  return "null"  if obj is null
+  switch typeof obj
+    when "string"
+      "'" + obj + "'"
+    when "undefined"
+      "undefined"
+    when "function"
+      obj.toString().replace /\{[\s\S]*\}/, "{ ... }"
+    when "boolean"
+      (if obj then "true" else "false")
+    when "object"
+      strs = []
+      if instanceOf(obj, "Array")
+        strs.push "["
+        i = 0
+        ii = obj.length
 
-  it "should serialize booleans", ->
-    expect(stringify(true)).to.equal "true"
-    expect(stringify(false)).to.equal "false"
-
-  it "should serialize null and undefined", ->
-    expect(stringify(null)).to.equal "null"
-    expect(stringify()).to.equal "undefined"
-
-  it "should serialize functions", ->
-    abc = (a, b, c) ->
-      "whatever"
-    def = (d, e, f) ->
-      "whatever"
-
-    expect(stringify(abc)).to.equal "function (a, b, c) { ... }"
-    console.log(stringify(abc))
-    expect(stringify(def)).to.equal "function (d, e, f) { ... }"
-
-  it "should serialize arrays", ->
-    expect(stringify([
-      'a'
-      'b'
-    ])).to.equal "['a', 'b', null, true, false]"
-
-  it "should serialize html", ->
-    div = document.createElement("div")
-    expect(stringify(div)).to.equal "<div></div>"
-    div.innerHTML = "some <span>text</span>"
-    expect(stringify(div)).to.equal "<div>some <span>text</span></div>"
-
-  it "should serialize across iframes", ->
-    div = document.createElement("div")
-    expect(__karma__.stringify(div)).to.equal "<div></div>"
-    expect(__karma__.stringify([
-      1
-      2
-    ])).to.equal "[1, 2]"
+        while i < ii
+          strs.push ", "  if i
+          strs.push stringify(obj[i], depth - 1)
+          i++
+        strs.push "]"
+      else if instanceOf(obj, "Date")
+        return obj.toString()
+      else if instanceOf(obj, "Text")
+        return obj.nodeValue
+      else if instanceOf(obj, "Comment")
+        return "<!--" + obj.nodeValue + "-->"
+      else if obj.outerHTML
+        return obj.outerHTML
+      else
+        strs.push obj.constructor.name
+        strs.push "{"
+        first = true
+        for key of obj
+          if obj.hasOwnProperty(key)
+            if first
+              first = false
+            else
+              strs.push ", "
+            strs.push key + ": " + stringify(obj[key], depth - 1)
+        strs.push "}"
+      strs.join ""
+    else
+      obj

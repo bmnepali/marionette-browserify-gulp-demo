@@ -1,0 +1,18 @@
+<span id="todo-count">
+  <strong>{{ activeCount }}</strong> {{ activeCountLabel }}
+</span>
+<!-- how are these hrefs called? -->
+<ul id="filters">
+  <li>
+      <a href="#">All</a>
+  </li>
+  <li>
+      <a href="#active">Active</a>
+  </li>
+  <li>
+      <a href="#completed">Completed</a>
+  </li>
+</ul>
+<button id="clear-completed" {{#unless completedCount }}class="hidden"{{/unless }}>
+  Clear completed ({{ completedCount }})
+</button>
