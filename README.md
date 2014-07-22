@@ -65,8 +65,10 @@ Note: Requires MongoDB running in the backgound.
 ### Run gulp with Tests / Coverage Reports
 Make sure you've required all your tests in 'test/runner.coffee'.
 In a new window, you can run.
+
 TODO: make this run automatically whenever changes occur in src and client
 code.
+
 ```
 gulp test
 ```
@@ -87,3 +89,4 @@ Note: Replace ':id' with MongoDB id for the PUT and DELETE requests.
 - https://github.com/davidsulc/marionette-gentle-introduction
 - https://github.com/davidsulc/marionette-serious-progression-app
 - https://github.com/davidsulc/structuring-backbone-with-requirejs-and-marionette
+- https://github.com/JSteunou/marionetteify
