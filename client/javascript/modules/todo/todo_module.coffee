@@ -10,7 +10,6 @@ module.exports = class TodoModule extends Marionette.Module
     @createContainer()
     @addRegion()
     @startMediator()
-    @listCollection
 
   onStop: ->
     @stopMediator()

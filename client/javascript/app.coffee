@@ -1,6 +1,6 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
-Todo = require './modules/todo/todo_module'
+ContactsModule = require './modules/contacts/contacts_module'
 
 App = new Marionette.Application()
 
@@ -11,11 +11,14 @@ App.navigate = (router, options) ->
 App.getCurrentRoute = ->
   Backbone.history.fragment
 
-App.on('start', ->
+App.on 'start', ->
   if Backbone.history
     Backbone.history.start()
-)
 
-App.module 'todo', Todo
+App.module 'contacts', ContactsModule
 
 module.exports = App
+
+###########################
+# Todo = require './modules/todo/todo_module'
+# App.module 'todo', Todo

@@ -1,6 +1,6 @@
 Backbone = require 'backbone'
 Contact = require '../models/contact'
 
-module.exports = class Contacts extends Backbone.Collection
+module.exports = Backbone.Collection.extend
   model: Contact
-  url: 'http://localhost:3300/api/contacts'
+  comparator: "firstName"
