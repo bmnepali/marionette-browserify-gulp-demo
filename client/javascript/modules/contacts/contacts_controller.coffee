@@ -2,9 +2,17 @@ Marionette = require 'backbone.marionette'
 LoadingView = require '../views/loading_view'
 App = require '../app'
 
-class ContactsController extends Marionette.Controller
-  listContacts: (criterion) ->
-    loadingView = new LoadingView()
-    App.mainRegion.show(loadingView)
+module.exports = Marionette.Controller.extend
+  initialize: ->
+    @todosCollection = new TodosCollection
+    @todosLayout = new TodosLayout {@todosCollection}
+    onSuccess = ( ->
+      @options.todoRegion.show(@todosLayout)
+    ).bind(@)
+    @todosCollection.fetch(success: onSuccess)
 
-module.exports = ContactsController
+  filterItems: (filter) ->
+    filter = (filter and filter.trim() or 'all')
+    @todosLayout.updateFilter(filter)
+
+

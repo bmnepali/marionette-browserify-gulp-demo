@@ -4,7 +4,7 @@ TodoController = require './todo_controller'
 
 module.exports = class TodoModule extends Marionette.Module
   initialize: ->
-    @todoRegionId = 'todo-module-region'
+    @regionId = 'todo-module-region'
 
   onStart: ->
     @createContainer()
@@ -19,11 +19,11 @@ module.exports = class TodoModule extends Marionette.Module
 
   createContainer: ->
     node = document.createElement 'div'
-    node.id = @todoRegionId
+    node.id = @regionId
     document.body.appendChild node
 
   addRegion: ->
-    @app.addRegions todoRegion: '#' + @todoRegionId
+    @app.addRegions todoRegion: '#' + @regionId
 
   startMediator: ->
     @controller = new TodoController todoRegion: @app.todoRegion
@@ -36,5 +36,5 @@ module.exports = class TodoModule extends Marionette.Module
     @app.removeRegion 'todoRegion'
 
   destroyContainer: ->
-    node = document.getElementById this.todoRegionId
+    node = document.getElementById @regionId
     node?.parentElement.removeChild node

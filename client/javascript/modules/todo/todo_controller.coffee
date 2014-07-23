@@ -6,9 +6,6 @@ module.exports = Marionette.Controller.extend
   initialize: ->
     @todosCollection = new TodosCollection
     @todosLayout = new TodosLayout {@todosCollection}
-    ## For Testing:
-    window.todosColl = @todosCollection
-
     onSuccess = ( ->
       @options.todoRegion.show(@todosLayout)
     ).bind(@)
