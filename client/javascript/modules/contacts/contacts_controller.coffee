@@ -10,7 +10,10 @@ module.exports = Marionette.Controller.extend
     ContactEntity.initialize()
     @setHandlers()
 
-  showContact: (model) ->
+  showContact: (id) ->
+    contacts = Radio.reqres.request 'global', "contact:entities"
+    Backbone.history.navigate "contacts/#{id}"
+    model = contacts.get(id)
     showContactView = new ShowContactView {model}
     @options.mainRegion.show(showContactView)
 
@@ -23,7 +26,7 @@ module.exports = Marionette.Controller.extend
       @collection.remove(model)
 
     listContactsView.on 'childview:contact:show', (childView, model) =>
-      @showContact(model)
+      @showContact(model.get('id'))
 
     @options.mainRegion.show(listContactsView)
 

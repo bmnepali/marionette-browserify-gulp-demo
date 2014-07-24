@@ -13,7 +13,6 @@ module.exports = Marionette.ItemView.extend
     @$el.toggleClass('warning')
 
   showClicked: (e) ->
-    console.log e
     e.preventDefault()
     e.stopPropagation()
     @trigger('contact:show', @model)
