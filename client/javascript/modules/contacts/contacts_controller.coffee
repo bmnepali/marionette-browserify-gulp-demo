@@ -3,10 +3,12 @@ ListContactsView = require './views/list/contacts_view'
 ShowContactView = require './views/show/contact_view'
 ContactEntity = require './entities/contact'
 Radio = require '../../radio'
+Backbone = require 'backbone'
 
 module.exports = Marionette.Controller.extend
   initialize: ->
     ContactEntity.initialize()
+    @setHandlers()
 
   showContact: (model) ->
     showContactView = new ShowContactView {model}
@@ -24,3 +26,8 @@ module.exports = Marionette.Controller.extend
       @showContact(model)
 
     @options.mainRegion.show(listContactsView)
+
+  setHandlers: ->
+    Radio.vent.on 'global', 'contacts:list', =>
+      Backbone.history.navigate 'contacts'
+      @listContacts()
