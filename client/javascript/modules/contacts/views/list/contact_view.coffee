@@ -2,15 +2,21 @@ Marionette = require 'backbone.marionette'
 
 module.exports = Marionette.ItemView.extend
   tagName: 'tr'
-  template: require './templates/contact'
+  template: require '../templates/list_contact'
 
   events:
     'click': 'highlightName'
+    'click td a.js-show': 'showClicked'
     'click button.js-delete': 'deleteClicked'
 
   highlightName: (e) ->
     @$el.toggleClass('warning')
 
+  showClicked: (e) ->
+    console.log e
+    e.preventDefault()
+    e.stopPropagation()
+    @trigger('contact:show', @model)
 
   deleteClicked: (e) ->
     e.stopPropagation()

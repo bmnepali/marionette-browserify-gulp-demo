@@ -12,6 +12,7 @@ gulp.task('compass', function() {
     .pipe(compass({
       config_file: 'compass.rb',
       css: 'build',
+      font: 'client/css/fonts',
       sass: 'client/css'
     }))
     .on('error', handleErrors);
