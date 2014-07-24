@@ -1,6 +1,7 @@
 Marionette = require 'backbone.marionette'
 ListContactsView = require './views/list/contacts_view'
 ShowContactView = require './views/show/contact_view'
+MissingContactView = require './views/show/missing_contact_view'
 ContactEntity = require './entities/contact'
 Radio = require '../../radio'
 Backbone = require 'backbone'
@@ -14,8 +15,12 @@ module.exports = Marionette.Controller.extend
     contacts = Radio.reqres.request 'global', "contact:entities"
     Backbone.history.navigate "contacts/#{id}"
     model = contacts.get(id)
-    showContactView = new ShowContactView {model}
-    @options.mainRegion.show(showContactView)
+    if model is undefined
+      contactView = new MissingContactView()
+    else
+      contactView = new ShowContactView {model}
+
+    @options.mainRegion.show(contactView)
 
   listContacts: ->
     contacts = Radio.reqres.request 'global', "contact:entities"
