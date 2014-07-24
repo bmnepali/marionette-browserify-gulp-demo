@@ -4,5 +4,3 @@ App = require './app'
 $(document).ready ->
   App.start()
   console.log 'Started'
-
-module.exports = App

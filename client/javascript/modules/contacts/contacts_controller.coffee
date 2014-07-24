@@ -1,42 +1,18 @@
 Marionette = require 'backbone.marionette'
-App = require '../../initialize'
-ContactsCollection = require './models/contacts'
 ContactsView = require './views/contacts_view'
+ContactEntity = require './entities/contact'
+Radio = require '../../radio'
 
 module.exports = Marionette.Controller.extend
   initialize: ->
-    @contactsCollection = new ContactsCollection
-    @contactsView = new ContactsView collection: @contactsCollection
-    @startEventListeners()
+    ContactEntity.initialize()
 
   listContacts: ->
-    if @contactsCollection.length is 0
-      @contactsCollection = @initializeContacts()
-      @contactsView.collection = @contactsCollection
-    @options.mainRegion.show(@contactsView)
-
-  startEventListeners: ->
-    @contactsView.on 'childview:contact:delete', (childView, model) ->
+    contacts = Radio.reqres.request 'global', "contact:entities"
+    contactsView = new ContactsView collection: contacts
+    contactsView.on 'childview:contact:delete', (childView, model) ->
+      # Since we're now inside the contacts view scope, we call @collection
+      # instead of @contactsCollection.
       @collection.remove(model)
 
-  initializeContacts: ->
-    contacts = new ContactsCollection([
-      {
-        id: 1
-        firstName: "Alice"
-        lastName: "Arten"
-        phoneNumber: "555-0184"
-      }
-      {
-        id: 2
-        firstName: "Bob"
-        lastName: "Brigham"
-        phoneNumber: "555-0163"
-      }
-      {
-        id: 3
-        firstName: "Charlie"
-        lastName: "Campbell"
-        phoneNumber: "555-0129"
-      }
-    ])
+    @options.mainRegion.show(contactsView)
