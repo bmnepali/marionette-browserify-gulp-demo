@@ -1,5 +1,5 @@
 Marionette = require 'backbone.marionette'
-App = require '../../app'
+App = require '../../initialize'
 ContactsCollection = require './models/contacts'
 ContactsView = require './views/contacts_view'
 
@@ -7,12 +7,17 @@ module.exports = Marionette.Controller.extend
   initialize: ->
     @contactsCollection = new ContactsCollection
     @contactsView = new ContactsView collection: @contactsCollection
+    @startEventListeners()
 
   listContacts: ->
     if @contactsCollection.length is 0
       @contactsCollection = @initializeContacts()
-      @contactsView = new ContactsView collection: @contactsCollection
+      @contactsView.collection = @contactsCollection
     @options.mainRegion.show(@contactsView)
+
+  startEventListeners: ->
+    @contactsView.on 'childview:contact:delete', (childView, model) ->
+      @collection.remove(model)
 
   initializeContacts: ->
     contacts = new ContactsCollection([
