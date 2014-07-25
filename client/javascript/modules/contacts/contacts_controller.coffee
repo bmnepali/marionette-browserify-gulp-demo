@@ -1,6 +1,7 @@
 Marionette = require 'backbone.marionette'
 ListContactsView = require './views/list/contacts_view'
 ShowContactView = require './views/show/contact_view'
+EditContactView = require './views/edit/contact_view'
 MissingContactView = require './views/show/missing_contact_view'
 LoadingView = require './views/common/loading_view'
 ContactEntity = require './entities/contact'
@@ -13,32 +14,49 @@ module.exports = Marionette.Controller.extend
     ContactEntity.initialize()
     @setHandlers()
 
+  editContact: (id) ->
+    loadingView = new LoadingView()
+    @options.mainRegion.show loadingView
+
+    fetchingContact = Radio.reqres.request 'global', "contact:entity", id
+    Backbone.history.navigate "contacts/#{id}/edit"
+
+    $.when(fetchingContact).done (contact) =>
+      if contact is undefined
+        contactView = new MissingContactView()
+      else
+        contactView = new EditContactView model: contact
+      @options.mainRegion.show(contactView)
+
   showContact: (id) ->
     loadingView = new LoadingView()
     @options.mainRegion.show loadingView
 
-    fetchingContacts = Radio.reqres.request 'global', "contact:entity", id
+    fetchingContact = Radio.reqres.request 'global', "contact:entity", id
     Backbone.history.navigate "contacts/#{id}"
-    $.when(fetchingContacts).done (contact) =>
+
+    $.when(fetchingContact).done (contact) =>
       if contact is undefined
         contactView = new MissingContactView()
       else
         contactView = new ShowContactView model: contact
-        contactView.on 'childview:contact:edit', (childview, model) ->
-          #resume here tomorrow
+
       @options.mainRegion.show(contactView)
+
+      contactView.on 'childview:contact:edit', (childview, model) =>
+        @editContact(model.get('id'))
 
   listContacts: ->
     loadingView = new LoadingView()
     @options.mainRegion.show loadingView
 
     fetchingContacts = Radio.reqres.request 'global', "contact:entities"
+    Backbone.history.navigate "contacts"
+
     $.when(fetchingContacts).done (contacts) =>
       listContactsView = new ListContactsView collection: contacts
-
       listContactsView.on 'childview:contact:delete', (childView, model) ->
         model.destroy()
-
       listContactsView.on 'childview:contact:show', (childView, model) =>
         @showContact(model.get('id'))
 
