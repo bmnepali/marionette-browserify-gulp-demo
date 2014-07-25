@@ -28,7 +28,7 @@ module.exports = Marionette.Controller.extend
     listContactsView.on 'childview:contact:delete', (childView, model) ->
       # Since we're now inside the contacts view scope, we call @collection
       # instead of @contactsCollection.
-      @collection.remove(model)
+      model.destroy()
 
     listContactsView.on 'childview:contact:show', (childView, model) =>
       @showContact(model.get('id'))
