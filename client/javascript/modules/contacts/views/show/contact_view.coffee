@@ -7,5 +7,6 @@ module.exports = Marionette.ItemView.extend
     'click a.js-edit': 'editClicked'
 
   editClicked: (e) ->
+    # e.preventDefault()
     @trigger 'contact:edit', @model
 

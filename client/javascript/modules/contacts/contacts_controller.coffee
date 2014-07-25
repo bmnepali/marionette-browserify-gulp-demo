@@ -23,10 +23,17 @@ module.exports = Marionette.Controller.extend
 
     $.when(fetchingContact).done (contact) =>
       if contact is undefined
-        contactView = new MissingContactView()
+        editContactView = new MissingContactView()
       else
-        contactView = new EditContactView model: contact
-      @options.mainRegion.show(contactView)
+        editContactView = new EditContactView model: contact
+
+      @options.mainRegion.show(editContactView)
+
+      Radio.reqres.setHandler 'global', "contact:edit:submit", (data) =>
+        if contact.save data
+          @showContact contact.get('id')
+        else
+          editContactView.triggerMethod "form:data:invalid", contact.validationError
 
   showContact: (id) ->
     loadingView = new LoadingView()
@@ -37,13 +44,13 @@ module.exports = Marionette.Controller.extend
 
     $.when(fetchingContact).done (contact) =>
       if contact is undefined
-        contactView = new MissingContactView()
+        showContactView = new MissingContactView()
       else
-        contactView = new ShowContactView model: contact
+        showContactView = new ShowContactView model: contact
 
-      @options.mainRegion.show(contactView)
+      @options.mainRegion.show(showContactView)
 
-      contactView.on 'childview:contact:edit', (childview, model) =>
+      showContactView.on 'childview:contact:edit', (childview, model) =>
         @editContact(model.get('id'))
 
   listContacts: ->
@@ -55,8 +62,10 @@ module.exports = Marionette.Controller.extend
 
     $.when(fetchingContacts).done (contacts) =>
       listContactsView = new ListContactsView collection: contacts
+
       listContactsView.on 'childview:contact:delete', (childView, model) ->
         model.destroy()
+
       listContactsView.on 'childview:contact:show', (childView, model) =>
         @showContact(model.get('id'))
 

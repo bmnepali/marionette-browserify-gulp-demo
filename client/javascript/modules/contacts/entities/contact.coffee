@@ -64,7 +64,7 @@ module.exports =
           defer.resolve data
         error: (data) ->
           defer.resolve 'undefined'
-    ), 2000)
+    ), 500)
 
     defer.promise()
 
