@@ -24,10 +24,14 @@ module.exports = Marionette.Controller.extend
         contactView = new MissingContactView()
       else
         contactView = new ShowContactView model: contact
-
+        contactView.on 'childview:contact:edit', (childview, model) ->
+          #resume here tomorrow
       @options.mainRegion.show(contactView)
 
   listContacts: ->
+    loadingView = new LoadingView()
+    @options.mainRegion.show loadingView
+
     fetchingContacts = Radio.reqres.request 'global', "contact:entities"
     $.when(fetchingContacts).done (contacts) =>
       listContactsView = new ListContactsView collection: contacts
