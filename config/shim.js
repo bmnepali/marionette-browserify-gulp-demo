@@ -10,8 +10,10 @@ module.exports = {
         }
     },
     "jquery.spin": {
+        "exports": "$.fn.spin",
         "depends": {
-           "spin":"spin",
+           "jquery":"$",
+           "spin":"spin"
         }
     },
     "jqueryui": {

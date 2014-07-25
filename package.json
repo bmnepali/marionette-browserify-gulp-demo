@@ -10,7 +10,7 @@
     "bootstrap-sass": "~3.0.2",
     "jqueryui": "./client/javascript/vendor/jquery-ui-browserify-shimmed.js",
     "jquery": "./bower_components/jquery/dist/jquery.js",
-    "jquery.spin": "./bower_components/spin.js/jquery.spin.js",
+    "jquery.spin": "./client/javascript/vendor/jquery-spin-browserify-shimmed.js",
     "spin": "./bower_components/spin.js/spin.js",
     "lodash": "./bower_components/lodash/dist/lodash.underscore.js",
     "backbone": "./bower_components/backbone/backbone.js",

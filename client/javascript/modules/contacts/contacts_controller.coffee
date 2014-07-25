@@ -2,6 +2,7 @@ Marionette = require 'backbone.marionette'
 ListContactsView = require './views/list/contacts_view'
 ShowContactView = require './views/show/contact_view'
 MissingContactView = require './views/show/missing_contact_view'
+LoadingView = require './views/common/loading_view'
 ContactEntity = require './entities/contact'
 Radio = require '../../radio'
 Backbone = require 'backbone'
@@ -13,6 +14,9 @@ module.exports = Marionette.Controller.extend
     @setHandlers()
 
   showContact: (id) ->
+    loadingView = new LoadingView()
+    @options.mainRegion.show loadingView
+
     fetchingContacts = Radio.reqres.request 'global', "contact:entity", id
     Backbone.history.navigate "contacts/#{id}"
     $.when(fetchingContacts).done (contact) =>

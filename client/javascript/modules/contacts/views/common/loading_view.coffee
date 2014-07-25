@@ -1,8 +1,9 @@
 Marionette = require 'backbone.marionette'
 $ = require 'jquery'
+$.spin = require 'jquery.spin'
 
-module.exports = class LoadingView extends Marionette.ItemView
-  template: require './templates/loading'
+module.exports = Marionette.ItemView.extend
+  template: require '../templates/loading'
 
   initialize: (options) ->
     options = options or {}
