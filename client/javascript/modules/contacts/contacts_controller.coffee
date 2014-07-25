@@ -5,6 +5,7 @@ MissingContactView = require './views/show/missing_contact_view'
 ContactEntity = require './entities/contact'
 Radio = require '../../radio'
 Backbone = require 'backbone'
+$ = require 'jquery'
 
 module.exports = Marionette.Controller.extend
   initialize: ->
@@ -12,28 +13,28 @@ module.exports = Marionette.Controller.extend
     @setHandlers()
 
   showContact: (id) ->
-    contacts = Radio.reqres.request 'global', "contact:entities"
+    fetchingContacts = Radio.reqres.request 'global', "contact:entity", id
     Backbone.history.navigate "contacts/#{id}"
-    model = contacts.get(id)
-    if model is undefined
-      contactView = new MissingContactView()
-    else
-      contactView = new ShowContactView {model}
+    $.when(fetchingContacts).done (contact) =>
+      if contact is undefined
+        contactView = new MissingContactView()
+      else
+        contactView = new ShowContactView model: contact
 
-    @options.mainRegion.show(contactView)
+      @options.mainRegion.show(contactView)
 
   listContacts: ->
-    contacts = Radio.reqres.request 'global', "contact:entities"
-    listContactsView = new ListContactsView collection: contacts
-    listContactsView.on 'childview:contact:delete', (childView, model) ->
-      # Since we're now inside the contacts view scope, we call @collection
-      # instead of @contactsCollection.
-      model.destroy()
+    fetchingContacts = Radio.reqres.request 'global', "contact:entities"
+    $.when(fetchingContacts).done (contacts) =>
+      listContactsView = new ListContactsView collection: contacts
 
-    listContactsView.on 'childview:contact:show', (childView, model) =>
-      @showContact(model.get('id'))
+      listContactsView.on 'childview:contact:delete', (childView, model) ->
+        model.destroy()
 
-    @options.mainRegion.show(listContactsView)
+      listContactsView.on 'childview:contact:show', (childView, model) =>
+        @showContact(model.get('id'))
+
+      @options.mainRegion.show(listContactsView)
 
   setHandlers: ->
     Radio.vent.on 'global', 'contacts:list', =>

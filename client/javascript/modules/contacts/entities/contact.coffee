@@ -2,12 +2,12 @@ Marionette = require 'backbone.marionette'
 ContactsCollection = require '../collections/contacts'
 ContactModel = require '../models/contact'
 Radio = require '../../../radio'
+$ = require 'jquery'
 
 contacts = 'undefined'
 
 module.exports =
   initialize: ->
-    # @setStorage()
     @setHandlers()
 
   initializeContacts: ->
@@ -31,25 +31,47 @@ module.exports =
         phoneNumber: "555-0129"
       }
     ])
+
     contacts.forEach (contact) ->
       contact.save()
-    contacts
+
+    contacts.models
 
   getContactEntities: ->
     contacts = new ContactsCollection()
-    contacts.fetch()
-    if contacts.length is 0
-      @initializeContacts()
-    contacts
+    defer = $.Deferred()
+
+    contacts.fetch
+      success: (data) ->
+        defer.resolve(data)
+
+    promise = defer.promise()
+
+    $.when(promise).done (contacts) =>
+      if contacts.length is 0
+        models = @initializeContacts()
+        contacts.reset(models)
+
+    promise
 
   getContactEntity: (id) ->
     contact = new ContactModel {id}
-    contact.fetch()
-    contacts
+    defer = $.Deferred()
+
+    setTimeout((->
+      contact.fetch
+        success: (data) ->
+          defer.resolve data
+        error: (data) ->
+          defer.resolve 'undefined'
+    ), 2000)
+
+    defer.promise()
 
   setHandlers: ->
     Radio.reqres.setHandler "global", "contact:entities", =>
       @getContactEntities()
+
     Radio.reqres.setHandler "global", "contact:entity", (id) =>
       @getContactEntity(id)
 
