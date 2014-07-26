@@ -1,13 +1,17 @@
 Marionette = require 'backbone.marionette'
-ListContactsView = require './views/list/contacts_view'
-ShowContactView = require './views/show/contact_view'
-EditContactView = require './views/edit/contact_view'
-MissingContactView = require './views/show/missing_contact_view'
-LoadingView = require './views/common/loading_view'
-ContactEntity = require './entities/contact'
 Radio = require '../../radio'
 Backbone = require 'backbone'
 $ = require 'jquery'
+
+ListContactsView = require './views/list/contacts_view'
+ShowContactView = require './views/show/contact_view'
+EditContactView = require './views/edit/contact_view'
+ListLayoutView = require './views/list/layout_view'
+ListPanelView = require './views/list/panel_view'
+MissingContactView = require './views/show/missing_contact_view'
+LoadingView = require './views/common/loading_view'
+
+ContactEntity = require './entities/contact'
 
 module.exports = Marionette.Controller.extend
   initialize: ->
@@ -60,8 +64,15 @@ module.exports = Marionette.Controller.extend
     fetchingContacts = Radio.reqres.request 'global', "contact:entities"
     Backbone.history.navigate "contacts"
 
+    layoutView = new ListLayoutView()
+    panelView = new ListPanelView()
+
     $.when(fetchingContacts).done (contacts) =>
       listContactsView = new ListContactsView collection: contacts
+
+      layoutView.on 'show', ->
+        @panelRegion.show panelView
+        @contactsRegion.show listContactsView
 
       listContactsView.on 'childview:contact:delete', (childView, model) ->
         model.destroy()
@@ -84,7 +95,7 @@ module.exports = Marionette.Controller.extend
 
         @options.dialogRegion.show(view)
 
-      @options.mainRegion.show(listContactsView)
+      @options.mainRegion.show(layoutView)
 
   setHandlers: ->
     Radio.vent.on 'global', 'contacts:list', =>

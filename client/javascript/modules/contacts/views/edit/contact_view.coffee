@@ -6,7 +6,8 @@ require 'jqueryui'
 
 module.exports = Marionette.ItemView.extend
   initialize: ->
-    @title = "Edit" + @model.get 'firstName' + " " + @model.get 'lastName'
+    @title = "Edit " + @model.get('firstName') + " " + @model.get('lastName')
+    console.log @title
 
   template: require '../templates/edit_contact_form'
 

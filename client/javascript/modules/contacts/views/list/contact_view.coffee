@@ -6,8 +6,8 @@ module.exports = Marionette.ItemView.extend
 
   events:
     'click': 'highlightName'
-    'click td a.js-show': 'showClicked'
-    'click td a.js-edit': 'editClicked'
+    'click td button.js-show': 'showClicked'
+    'click td button.js-edit': 'editClicked'
     'click button.js-delete': 'deleteClicked'
 
   highlightName: (e) ->
