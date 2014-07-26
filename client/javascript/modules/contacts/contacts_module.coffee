@@ -3,17 +3,18 @@ ContactsRouter = require './contacts_router'
 ContactsController = require './contacts_controller'
 
 module.exports = class TodoModule extends Marionette.Module
-  initialize: ->
-    @mainRegionId = 'main-region'
-
   onStart: ->
     @addRegion()
     @startMediator()
 
   addRegion: ->
-    @app.addRegions mainRegion: '#' + @mainRegionId
+    @app.addRegions
+      mainRegion: "#main-region"
+      dialogRegion: "#dialog-region"
 
   startMediator: ->
-    @controller = new ContactsController mainRegion: @app.mainRegion
+    @controller = new ContactsController
+      mainRegion: @app.mainRegion
+      dialogRegion: @app.dialogRegion
     router = new ContactsRouter {@controller}
 

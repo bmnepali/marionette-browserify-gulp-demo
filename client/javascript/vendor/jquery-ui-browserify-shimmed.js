@@ -1,7 +1,7 @@
-/*! jQuery UI - v1.11.0 - 2014-06-26
+/*! $ UI - v1.11.0 - 2014-06-26
 * http://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, position.js, draggable.js, droppable.js, resizable.js, selectable.js, sortable.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, menu.js, progressbar.js, selectmenu.js, slider.js, spinner.js, tabs.js, tooltip.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js
-* Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
+* Copyright 2014 $ Foundation and other contributors; Licensed MIT */
 
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -11,15 +11,15 @@
 	} else {
 
 		// Browser globals
-		// factory( jQuery );
+		// factory( $ );
 		factory( $ );
 	}
 }(function( $ ) {
 /*!
- * jQuery UI Core 1.11.0
+ * $ UI Core 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -126,7 +126,7 @@ $.extend( $.expr[ ":" ], {
 				return !!$.data( elem, dataName );
 			};
 		}) :
-		// support: jQuery <1.8
+		// support: $ <1.8
 		function( elem, i, match ) {
 			return !!$.data( elem, match[ 3 ] );
 		},
@@ -142,7 +142,7 @@ $.extend( $.expr[ ":" ], {
 	}
 });
 
-// support: jQuery <1.8
+// support: $ <1.8
 if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
 	$.each( [ "Width", "Height" ], function( i, name ) {
 		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
@@ -189,7 +189,7 @@ if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
 	});
 }
 
-// support: jQuery <1.8
+// support: $ <1.8
 if ( !$.fn.addBack ) {
 	$.fn.addBack = function( selector ) {
 		return this.add( selector == null ?
@@ -198,7 +198,7 @@ if ( !$.fn.addBack ) {
 	};
 }
 
-// support: jQuery 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
+// support: $ 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
 if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
 	$.fn.removeData = (function( removeData ) {
 		return function( key ) {
@@ -309,14 +309,14 @@ $.ui.plugin = {
 
 
 /*!
- * jQuery UI Widget 1.11.0
+ * $ UI Widget 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
+ * Copyright 2014 $ Foundation and other contributors
+
  * http://jquery.org/license
  *
- * http://api.jqueryui.com/jQuery.widget/
+ * http://api.jqueryui.com/$.widget/
  */
 
 
@@ -842,10 +842,10 @@ var widget = $.widget;
 
 
 /*!
- * jQuery UI Mouse 1.11.0
+ * $ UI Mouse 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -1016,10 +1016,10 @@ var mouse = $.widget("ui.mouse", {
 
 
 /*!
- * jQuery UI Position 1.11.0
+ * $ UI Position 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -1481,7 +1481,7 @@ $.ui.position = {
 		body = document.getElementsByTagName( "body" )[ 0 ],
 		div = document.createElement( "div" );
 
-	//Create a "fake body" for testing based on method used in jQuery.support
+	//Create a "fake body" for testing based on method used in $.support
 	testElement = document.createElement( body ? "div" : "body" );
 	testElementStyle = {
 		visibility: "hidden",
@@ -1520,10 +1520,10 @@ var position = $.ui.position;
 
 
 /*!
- * jQuery UI Draggable 1.11.0
+ * $ UI Draggable 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -2521,10 +2521,10 @@ var draggable = $.ui.draggable;
 
 
 /*!
- * jQuery UI Droppable 1.11.0
+ * $ UI Droppable 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -2921,10 +2921,10 @@ var droppable = $.ui.droppable;
 
 
 /*!
- * jQuery UI Resizable 1.11.0
+ * $ UI Resizable 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -3934,10 +3934,10 @@ var resizable = $.ui.resizable;
 
 
 /*!
- * jQuery UI Selectable 1.11.0
+ * $ UI Selectable 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -4206,10 +4206,10 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 
 
 /*!
- * jQuery UI Sortable 1.11.0
+ * $ UI Sortable 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -4685,7 +4685,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 		}
 
 		if (this.placeholder) {
-			//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately, it unbinds ALL events from the original node!
+			//$(this.placeholder[0]).remove(); would have been the $ way - unfortunately, it unbinds ALL events from the original node!
 			if(this.placeholder[0].parentNode) {
 				this.placeholder[0].parentNode.removeChild(this.placeholder[0]);
 			}
@@ -4713,7 +4713,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 
 	serialize: function(o) {
 
-		var items = this._getItemsAsjQuery(o && o.connected),
+		var items = this._getItemsAs$(o && o.connected),
 			str = [];
 		o = o || {};
 
@@ -4734,7 +4734,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 
 	toArray: function(o) {
 
-		var items = this._getItemsAsjQuery(o && o.connected),
+		var items = this._getItemsAs$(o && o.connected),
 			ret = [];
 
 		o = o || {};
@@ -4831,7 +4831,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 		return options.connectWith.constructor === String ? [options.connectWith] : options.connectWith;
 	},
 
-	_getItemsAsjQuery: function(connected) {
+	_getItemsAs$: function(connected) {
 
 		var i, j, cur, inst,
 			items = [],
@@ -5458,7 +5458,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 			this._trigger("beforeStop", event, this._uiHash());
 		}
 
-		//$(this.placeholder[0]).remove(); would have been the jQuery way - unfortunately, it unbinds ALL events from the original node!
+		//$(this.placeholder[0]).remove(); would have been the $ way - unfortunately, it unbinds ALL events from the original node!
 		this.placeholder[0].parentNode.removeChild(this.placeholder[0]);
 
 		if(this.helper[0] !== this.currentItem[0]) {
@@ -5501,10 +5501,10 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 
 
 /*!
- * jQuery UI Accordion 1.11.0
+ * $ UI Accordion 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -6062,10 +6062,10 @@ var accordion = $.widget( "ui.accordion", {
 
 
 /*!
- * jQuery UI Menu 1.11.0
+ * $ UI Menu 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -6687,10 +6687,10 @@ var menu = $.widget( "ui.menu", {
 
 
 /*!
- * jQuery UI Autocomplete 1.11.0
+ * $ UI Autocomplete 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -6938,7 +6938,7 @@ $.widget( "ui.autocomplete", {
 
 				// Announce the value in the liveRegion
 				label = ui.item.attr( "aria-label" ) || item.value;
-				if ( label && jQuery.trim( label ).length ) {
+				if ( label && $.trim( label ).length ) {
 					this.liveRegion.children().hide();
 					$( "<div>" ).text( label ).appendTo( this.liveRegion );
 				}
@@ -7297,10 +7297,10 @@ var autocomplete = $.ui.autocomplete;
 
 
 /*!
- * jQuery UI Button 1.11.0
+ * $ UI Button 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -7694,10 +7694,10 @@ var button = $.ui.button;
 
 
 /*!
- * jQuery UI Datepicker 1.11.0
+ * $ UI Datepicker 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -7773,7 +7773,7 @@ function Datepicker() {
 	this._defaults = { // Global defaults for all the date picker instances
 		showOn: "focus", // "focus" for popup on focus,
 			// "button" for trigger button, or "both" for either
-		showAnim: "fadeIn", // Name of jQuery animation for popup
+		showAnim: "fadeIn", // Name of $ animation for popup
 		showOptions: {}, // Options for enhanced animations
 		defaultDate: null, // Used when field is blank: actual date,
 			// +/-number for offset from today, null for today
@@ -7847,7 +7847,7 @@ $.extend(Datepicker.prototype, {
 		return this;
 	},
 
-	/* Attach the date picker to a jQuery selection.
+	/* Attach the date picker to a $ selection.
 	 * @param  target	element - the target input field or division or span
 	 * @param  settings  object - the new settings to use for this date picker instance (anonymous)
 	 */
@@ -7870,7 +7870,7 @@ $.extend(Datepicker.prototype, {
 
 	/* Create a new instance object. */
 	_newInst: function(target, inline) {
-		var id = target[0].id.replace(/([^A-Za-z0-9_\-])/g, "\\\\$1"); // escape jQuery meta chars
+		var id = target[0].id.replace(/([^A-Za-z0-9_\-])/g, "\\\\$1"); // escape $ meta chars
 		return {id: id, input: target, // associated target
 			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
 			drawMonth: 0, drawYear: 0, // month being drawn
@@ -8073,7 +8073,7 @@ $.extend(Datepicker.prototype, {
 		}
 	},
 
-	/* Enable the date picker to a jQuery selection.
+	/* Enable the date picker to a $ selection.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_enableDatepicker: function(target) {
@@ -8101,7 +8101,7 @@ $.extend(Datepicker.prototype, {
 			function(value) { return (value === target ? null : value); }); // delete entry
 	},
 
-	/* Disable the date picker to a jQuery selection.
+	/* Disable the date picker to a $ selection.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_disableDatepicker: function(target) {
@@ -8130,7 +8130,7 @@ $.extend(Datepicker.prototype, {
 		this._disabledInputs[this._disabledInputs.length] = target;
 	},
 
-	/* Is the first field in a jQuery collection disabled as a datepicker?
+	/* Is the first field in a $ collection disabled as a datepicker?
 	 * @param  target	element - the target input field or division or span
 	 * @return boolean - true if disabled, false if enabled
 	 */
@@ -8149,7 +8149,7 @@ $.extend(Datepicker.prototype, {
 	/* Retrieve the instance data for the target control.
 	 * @param  target  element - the target input field or division or span
 	 * @return  object - the associated instance data
-	 * @throws  error if a jQuery problem getting data
+	 * @throws  error if a $ problem getting data
 	 */
 	_getInst: function(target) {
 		try {
@@ -8231,7 +8231,7 @@ $.extend(Datepicker.prototype, {
 		}
 	},
 
-	/* Set the dates for a jQuery selection.
+	/* Set the dates for a $ selection.
 	 * @param  target element - the target input field or division or span
 	 * @param  date	Date - the new date
 	 */
@@ -8244,7 +8244,7 @@ $.extend(Datepicker.prototype, {
 		}
 	},
 
-	/* Get the date(s) for the first entry in a jQuery selection.
+	/* Get the date(s) for the first entry in a $ selection.
 	 * @param  target element - the target input field or division or span
 	 * @param  noDefault boolean - true if no default date is to be used
 	 * @return Date - the current date
@@ -8516,7 +8516,7 @@ $.extend(Datepicker.prototype, {
 
 	// #6694 - don't focus the input if it's already focused
 	// this breaks the change event in IE
-	// Support: IE and jQuery <1.9
+	// Support: IE and $ <1.9
 	_shouldFocusInput: function( inst ) {
 		return inst.input && inst.input.is( ":visible" ) && !inst.input.is( ":disabled" ) && !inst.input.is( ":focus" );
 	},
@@ -9695,7 +9695,7 @@ function datepicker_bindHover(dpDiv) {
 		});
 }
 
-/* jQuery extend now ignores nulls! */
+/* $ extend now ignores nulls! */
 function datepicker_extendRemove(target, props) {
 	$.extend(target, props);
 	for (var name in props) {
@@ -9709,7 +9709,7 @@ function datepicker_extendRemove(target, props) {
 /* Invoke the datepicker functionality.
    @param  options  string - a command, optionally followed by additional parameters or
 					Object - settings for attaching new datepicker functionality
-   @return  jQuery object */
+   @return  $ object */
 $.fn.datepicker = function(options){
 
 	/* Verify an empty collection wasn't passed - Fixes #6976 */
@@ -9754,10 +9754,10 @@ var datepicker = $.datepicker;
 
 
 /*!
- * jQuery UI Dialog 1.11.0
+ * $ UI Dialog 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10593,10 +10593,10 @@ var dialog = $.widget( "ui.dialog", {
 
 
 /*!
- * jQuery UI Progressbar 1.11.0
+ * $ UI Progressbar 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10738,10 +10738,10 @@ var progressbar = $.widget( "ui.progressbar", {
 
 
 /*!
- * jQuery UI Selectmenu 1.11.0
+ * $ UI Selectmenu 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11277,10 +11277,10 @@ var selectmenu = $.widget( "ui.selectmenu", {
 
 
 /*!
- * jQuery UI Slider 1.11.0
+ * $ UI Slider 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11950,10 +11950,10 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 
 
 /*!
- * jQuery UI Spinner 1.11.0
+ * $ UI Spinner 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -12449,10 +12449,10 @@ var spinner = $.widget( "ui.spinner", {
 
 
 /*!
- * jQuery UI Tabs 1.11.0
+ * $ UI Tabs 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -13025,7 +13025,7 @@ var tabs = $.widget( "ui.tabs", {
 		}
 
 		if ( !toHide.length && !toShow.length ) {
-			$.error( "jQuery UI Tabs: Mismatching fragment identifier." );
+			$.error( "$ UI Tabs: Mismatching fragment identifier." );
 		}
 
 		if ( toShow.length ) {
@@ -13247,8 +13247,8 @@ var tabs = $.widget( "ui.tabs", {
 
 		this.xhr = $.ajax( this._ajaxSettings( anchor, event, eventData ) );
 
-		// support: jQuery <1.8
-		// jQuery <1.8 returns false if the request is canceled in beforeSend,
+		// support: $ <1.8
+		// $ <1.8 returns false if the request is canceled in beforeSend,
 		// but as of 1.8, $.ajax() always returns a jqXHR object.
 		if ( this.xhr && this.xhr.statusText !== "canceled" ) {
 			tab.addClass( "ui-tabs-loading" );
@@ -13256,7 +13256,7 @@ var tabs = $.widget( "ui.tabs", {
 
 			this.xhr
 				.success(function( response ) {
-					// support: jQuery <1.8
+					// support: $ <1.8
 					// http://bugs.jquery.com/ticket/11778
 					setTimeout(function() {
 						panel.html( response );
@@ -13264,7 +13264,7 @@ var tabs = $.widget( "ui.tabs", {
 					}, 1 );
 				})
 				.complete(function( jqXHR, status ) {
-					// support: jQuery <1.8
+					// support: $ <1.8
 					// http://bugs.jquery.com/ticket/11778
 					setTimeout(function() {
 						if ( status === "abort" ) {
@@ -13301,10 +13301,10 @@ var tabs = $.widget( "ui.tabs", {
 
 
 /*!
- * jQuery UI Tooltip 1.11.0
+ * $ UI Tooltip 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -13316,7 +13316,7 @@ var tooltip = $.widget( "ui.tooltip", {
 	version: "1.11.0",
 	options: {
 		content: function() {
-			// support: IE<9, Opera in jQuery <1.7
+			// support: IE<9, Opera in $ <1.7
 			// .text() can't accept undefined, so coerce to a string
 			var title = $( this ).attr( "title" ) || "";
 			// Escape title, since we're going from an attribute to raw HTML
@@ -13501,7 +13501,7 @@ var tooltip = $.widget( "ui.tooltip", {
 			// IE may instantly serve a cached response for ajax requests
 			// delay this call to _open so the other call to _open runs first
 			that._delay(function() {
-				// jQuery creates a special event for focusin when it doesn't
+				// $ creates a special event for focusin when it doesn't
 				// exist natively. To improve performance, the native event
 				// object is reused and the type is changed. Therefore, we can't
 				// rely on the type being correct after the event finished
@@ -13730,10 +13730,10 @@ var tooltip = $.widget( "ui.tooltip", {
 
 
 /*!
- * jQuery UI Effects 1.11.0
+ * $ UI Effects 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -13748,16 +13748,16 @@ $.effects = {
 };
 
 /*!
- * jQuery Color Animations v2.1.2
+ * $ Color Animations v2.1.2
  * https://github.com/jquery/jquery-color
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
  * Date: Wed Jan 16 08:47:09 2013 -0600
  */
-(function( jQuery, undefined ) {
+(function( $, undefined ) {
 
 	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
 
@@ -13817,9 +13817,9 @@ $.effects = {
 			}
 		} ],
 
-	// jQuery.Color( )
-	color = jQuery.Color = function( color, green, blue, alpha ) {
-		return new jQuery.Color.fn.parse( color, green, blue, alpha );
+	// $.Color( )
+	color = $.Color = function( color, green, blue, alpha ) {
+		return new $.Color.fn.parse( color, green, blue, alpha );
 	},
 	spaces = {
 		rgba: {
@@ -13872,13 +13872,13 @@ $.effects = {
 	support = color.support = {},
 
 	// element for support tests
-	supportElem = jQuery( "<p>" )[ 0 ],
+	supportElem = $( "<p>" )[ 0 ],
 
-	// colors = jQuery.Color.names
+	// colors = $.Color.names
 	colors,
 
 	// local aliases of functions called often
-	each = jQuery.each;
+	each = $.each;
 
 // determine rgba support immediately
 supportElem.style.cssText = "background-color:rgba(1,1,1,.5)";
@@ -13952,7 +13952,7 @@ function stringParse( string ) {
 		// if this came from a parsed string, force "transparent" when alpha is 0
 		// chrome, (and maybe others) return "transparent" as rgba(0,0,0,0)
 		if ( rgba.join() === "0,0,0,0" ) {
-			jQuery.extend( rgba, colors.transparent );
+			$.extend( rgba, colors.transparent );
 		}
 		return inst;
 	}
@@ -13961,19 +13961,19 @@ function stringParse( string ) {
 	return colors[ string ];
 }
 
-color.fn = jQuery.extend( color.prototype, {
+color.fn = $.extend( color.prototype, {
 	parse: function( red, green, blue, alpha ) {
 		if ( red === undefined ) {
 			this._rgba = [ null, null, null, null ];
 			return this;
 		}
 		if ( red.jquery || red.nodeType ) {
-			red = jQuery( red ).css( green );
+			red = $( red ).css( green );
 			green = undefined;
 		}
 
 		var inst = this,
-			type = jQuery.type( red ),
+			type = $.type( red ),
 			rgba = this._rgba = [];
 
 		// more than 1 argument specified - assume ( red, green, blue, alpha )
@@ -14022,7 +14022,7 @@ color.fn = jQuery.extend( color.prototype, {
 					});
 
 					// everything defined but alpha?
-					if ( inst[ cache ] && jQuery.inArray( null, inst[ cache ].slice( 0, 3 ) ) < 0 ) {
+					if ( inst[ cache ] && $.inArray( null, inst[ cache ].slice( 0, 3 ) ) < 0 ) {
 						// use the default of 1
 						inst[ cache ][ 3 ] = 1;
 						if ( space.from ) {
@@ -14110,13 +14110,13 @@ color.fn = jQuery.extend( color.prototype, {
 			a = rgb.pop(),
 			blend = color( opaque )._rgba;
 
-		return color( jQuery.map( rgb, function( v, i ) {
+		return color( $.map( rgb, function( v, i ) {
 			return ( 1 - a ) * blend[ i ] + a * v;
 		}));
 	},
 	toRgbaString: function() {
 		var prefix = "rgba(",
-			rgba = jQuery.map( this._rgba, function( v, i ) {
+			rgba = $.map( this._rgba, function( v, i ) {
 				return v == null ? ( i > 2 ? 1 : 0 ) : v;
 			});
 
@@ -14129,7 +14129,7 @@ color.fn = jQuery.extend( color.prototype, {
 	},
 	toHslaString: function() {
 		var prefix = "hsla(",
-			hsla = jQuery.map( this.hsla(), function( v, i ) {
+			hsla = $.map( this.hsla(), function( v, i ) {
 				if ( v == null ) {
 					v = i > 2 ? 1 : 0;
 				}
@@ -14155,7 +14155,7 @@ color.fn = jQuery.extend( color.prototype, {
 			rgba.push( ~~( alpha * 255 ) );
 		}
 
-		return "#" + jQuery.map( rgba, function( v ) {
+		return "#" + $.map( rgba, function( v ) {
 
 			// default to 0 when nulls exist
 			v = ( v || 0 ).toString( 16 );
@@ -14259,7 +14259,7 @@ each( spaces, function( spaceName, space ) {
 		}
 
 		var ret,
-			type = jQuery.type( value ),
+			type = $.type( value ),
 			arr = ( type === "array" || type === "object" ) ? value : arguments,
 			local = this[ cache ].slice();
 
@@ -14287,7 +14287,7 @@ each( spaces, function( spaceName, space ) {
 			return;
 		}
 		color.fn[ key ] = function( value ) {
-			var vtype = jQuery.type( value ),
+			var vtype = $.type( value ),
 				fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spaceName ),
 				local = this[ fn ](),
 				cur = local[ prop.idx ],
@@ -14299,7 +14299,7 @@ each( spaces, function( spaceName, space ) {
 
 			if ( vtype === "function" ) {
 				value = value.call( this, cur );
-				vtype = jQuery.type( value );
+				vtype = $.type( value );
 			}
 			if ( value == null && prop.empty ) {
 				return this;
@@ -14321,12 +14321,12 @@ each( spaces, function( spaceName, space ) {
 color.hook = function( hook ) {
 	var hooks = hook.split( " " );
 	each( hooks, function( i, hook ) {
-		jQuery.cssHooks[ hook ] = {
+		$.cssHooks[ hook ] = {
 			set: function( elem, value ) {
 				var parsed, curElem,
 					backgroundColor = "";
 
-				if ( value !== "transparent" && ( jQuery.type( value ) !== "string" || ( parsed = stringParse( value ) ) ) ) {
+				if ( value !== "transparent" && ( $.type( value ) !== "string" || ( parsed = stringParse( value ) ) ) ) {
 					value = color( parsed || value );
 					if ( !support.rgba && value._rgba[ 3 ] !== 1 ) {
 						curElem = hook === "backgroundColor" ? elem.parentNode : elem;
@@ -14335,7 +14335,7 @@ color.hook = function( hook ) {
 							curElem && curElem.style
 						) {
 							try {
-								backgroundColor = jQuery.css( curElem, "backgroundColor" );
+								backgroundColor = $.css( curElem, "backgroundColor" );
 								curElem = curElem.parentNode;
 							} catch ( e ) {
 							}
@@ -14355,13 +14355,13 @@ color.hook = function( hook ) {
 				}
 			}
 		};
-		jQuery.fx.step[ hook ] = function( fx ) {
+		$.fx.step[ hook ] = function( fx ) {
 			if ( !fx.colorInit ) {
 				fx.start = color( fx.elem, hook );
 				fx.end = color( fx.end );
 				fx.colorInit = true;
 			}
-			jQuery.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
+			$.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
 		};
 	});
 
@@ -14369,7 +14369,7 @@ color.hook = function( hook ) {
 
 color.hook( stepHooks );
 
-jQuery.cssHooks.borderColor = {
+$.cssHooks.borderColor = {
 	expand: function( value ) {
 		var expanded = {};
 
@@ -14383,7 +14383,7 @@ jQuery.cssHooks.borderColor = {
 // Basic color names only.
 // Usage of any of the other color names requires adding yourself or including
 // jquery.color.svg-names.js.
-colors = jQuery.Color.names = {
+colors = $.Color.names = {
 	// 4.1. Basic color keywords
 	aqua: "#00ffff",
 	black: "#000000",
@@ -14408,7 +14408,7 @@ colors = jQuery.Color.names = {
 	_default: "#ffffff"
 };
 
-// })( jQuery );
+// })( $ );
 })( $ );
 
 /******************************************************************************/
@@ -14432,7 +14432,7 @@ var classAnimationActions = [ "add", "remove", "toggle" ],
 $.each([ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ], function( _, prop ) {
 	$.fx.step[ prop ] = function( fx ) {
 		if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
-			jQuery.style( fx.elem, prop, fx.end );
+			$.style( fx.elem, prop, fx.end );
 			fx.setAttr = true;
 		}
 	};
@@ -14483,7 +14483,7 @@ function styleDifference( oldStyle, newStyle ) {
 	return diff;
 }
 
-// support: jQuery <1.8
+// support: $ <1.8
 if ( !$.fn.addBack ) {
 	$.fn.addBack = function( selector ) {
 		return this.add( selector == null ?
@@ -14560,7 +14560,7 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 				});
 			});
 
-			// this is guarnteed to be there if you use jQuery.speed()
+			// this is guarnteed to be there if you use $.speed()
 			// it also handles dequeuing the next anim...
 			o.complete.call( animated[ 0 ] );
 		});
@@ -14639,9 +14639,9 @@ $.extend( $.effects, {
 		for ( i = 0; i < set.length; i++ ) {
 			if ( set[ i ] !== null ) {
 				val = element.data( dataSpace + set[ i ] );
-				// support: jQuery 1.6.2
+				// support: $ 1.6.2
 				// http://bugs.jquery.com/ticket/9917
-				// jQuery 1.6.2 incorrectly returns undefined for any falsy value.
+				// $ 1.6.2 incorrectly returns undefined for any falsy value.
 				// We can't differentiate between "" and 0 here, so we just assume
 				// empty string since it's likely to be a more common value...
 				if ( val === undefined ) {
@@ -14727,7 +14727,7 @@ $.extend( $.effects, {
 			$( active ).focus();
 		}
 
-		wrapper = element.parent(); //Hotfix for jQuery 1.4 since some change in wrap() seems to actually lose the reference to the wrapped element
+		wrapper = element.parent(); //Hotfix for $ 1.4 since some change in wrap() seems to actually lose the reference to the wrapped element
 
 		// transfer positioning properties to the wrapper
 		if ( element.css( "position" ) === "static" ) {
@@ -15018,10 +15018,10 @@ var effect = $.effects;
 
 
 /*!
- * jQuery UI Effects Blind 1.11.0
+ * $ UI Effects Blind 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15095,10 +15095,10 @@ var effectBlind = $.effects.effect.blind = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Bounce 1.11.0
+ * $ UI Effects Bounce 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15205,10 +15205,10 @@ var effectBounce = $.effects.effect.bounce = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Clip 1.11.0
+ * $ UI Effects Clip 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15269,10 +15269,10 @@ var effectClip = $.effects.effect.clip = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Drop 1.11.0
+ * $ UI Effects Drop 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15331,10 +15331,10 @@ var effectDrop = $.effects.effect.drop = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Explode 1.11.0
+ * $ UI Effects Explode 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15425,10 +15425,10 @@ var effectExplode = $.effects.effect.explode = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Fade 1.11.0
+ * $ UI Effects Fade 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15452,10 +15452,10 @@ var effectFade = $.effects.effect.fade = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Fold 1.11.0
+ * $ UI Effects Fold 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15525,10 +15525,10 @@ var effectFold = $.effects.effect.fold = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Highlight 1.11.0
+ * $ UI Effects Highlight 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15572,10 +15572,10 @@ var effectHighlight = $.effects.effect.highlight = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Size 1.11.0
+ * $ UI Effects Size 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15792,10 +15792,10 @@ var effectSize = $.effects.effect.size = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Scale 1.11.0
+ * $ UI Effects Scale 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15867,10 +15867,10 @@ var effectScale = $.effects.effect.scale = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Puff 1.11.0
+ * $ UI Effects Puff 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15913,10 +15913,10 @@ var effectPuff = $.effects.effect.puff = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Pulsate 1.11.0
+ * $ UI Effects Pulsate 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15973,10 +15973,10 @@ var effectPulsate = $.effects.effect.pulsate = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Shake 1.11.0
+ * $ UI Effects Shake 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -16044,10 +16044,10 @@ var effectShake = $.effects.effect.shake = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Slide 1.11.0
+ * $ UI Effects Slide 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -16105,10 +16105,10 @@ var effectSlide = $.effects.effect.slide = function( o, done ) {
 
 
 /*!
- * jQuery UI Effects Transfer 1.11.0
+ * $ UI Effects Transfer 1.11.0
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 $ Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *

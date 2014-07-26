@@ -29,7 +29,7 @@ module.exports = Marionette.Controller.extend
 
       @options.mainRegion.show(editContactView)
 
-      Radio.reqres.setHandler 'global', "contact:edit:submit", (data) =>
+      editContactView.on 'form:submit', (data) =>
         if contact.save data
           @showContact contact.get('id')
         else
@@ -68,6 +68,21 @@ module.exports = Marionette.Controller.extend
 
       listContactsView.on 'childview:contact:show', (childView, model) =>
         @showContact(model.get('id'))
+
+      listContactsView.on 'childview:contact:edit', (childView, model) =>
+        view = new EditContactView
+          model: model
+          asModal: true
+
+        view.on "form:submit", (data) =>
+          if model.save(data)
+            childView.render()
+            @options.dialogRegion.empty()
+            childView.flash "success"
+          else
+            view.triggerMethod "form:data:invalid", model.validationError
+
+        @options.dialogRegion.show(view)
 
       @options.mainRegion.show(listContactsView)
 
