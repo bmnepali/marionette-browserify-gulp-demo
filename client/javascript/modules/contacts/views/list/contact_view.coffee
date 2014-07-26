@@ -6,9 +6,11 @@ module.exports = Marionette.ItemView.extend
 
   events:
     'click': 'highlightName'
-    'click td button.js-show': 'showClicked'
-    'click td button.js-edit': 'editClicked'
-    'click button.js-delete': 'deleteClicked'
+
+  triggers:
+    'click td button.js-show': 'contact:show'
+    'click button.js-edit': 'contact:edit'
+    'click button.js-delete': 'contact:delete'
 
   highlightName: (e) ->
     @$el.toggleClass('warning')
@@ -20,20 +22,6 @@ module.exports = Marionette.ItemView.extend
         $view.toggleClass(cssClass)
       ), 500)
     )
-
-  showClicked: (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-    @trigger('contact:show', @model)
-
-  editClicked: (e) ->
-    e.preventDefault()
-    e.stopPropagation()
-    @trigger('contact:edit', @model)
-
-  deleteClicked: (e) ->
-    e.stopPropagation()
-    @trigger('contact:delete', @model)
 
   remove: ->
     self = @

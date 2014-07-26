@@ -8,10 +8,12 @@ ShowContactView = require './views/show/contact_view'
 EditContactView = require './views/edit/contact_view'
 ListLayoutView = require './views/list/layout_view'
 ListPanelView = require './views/list/panel_view'
+NewContactView = require './views/new/new_view'
 MissingContactView = require './views/show/missing_contact_view'
 LoadingView = require './views/common/loading_view'
 
 ContactEntity = require './entities/contact'
+ContactModel = require './models/contact'
 
 module.exports = Marionette.Controller.extend
   initialize: ->
@@ -47,7 +49,7 @@ module.exports = Marionette.Controller.extend
     Backbone.history.navigate "contacts/#{id}"
 
     $.when(fetchingContact).done (contact) =>
-      if contact is undefined
+      if contact is 'undefined'
         showContactView = new MissingContactView()
       else
         showContactView = new ShowContactView model: contact
@@ -70,17 +72,40 @@ module.exports = Marionette.Controller.extend
     $.when(fetchingContacts).done (contacts) =>
       listContactsView = new ListContactsView collection: contacts
 
+      panelView.on 'contact:new', =>
+        newContact = new ContactModel()
+
+        newContactView = new NewContactView
+          model: newContact
+          asModal: true
+
+        @options.dialogRegion.show(newContactView)
+
+        newContactView.on 'form:submit', (data) =>
+          if contacts.length > 0
+            highestId = contacts.max( (c) -> c.id ).get('id')
+            data.id = highestId + 1
+          else
+            data.id = 1
+          if newContact.save data
+            contacts.add(newContact)
+            @options.dialogRegion.close()
+            listContactsView.children.findByModel(newContact).flash('success')
+          else
+            newContactView.triggerMethod 'form:data:invalid', newContact.validationError
+
       layoutView.on 'show', ->
         @panelRegion.show panelView
         @contactsRegion.show listContactsView
 
-      listContactsView.on 'childview:contact:delete', (childView, model) ->
-        model.destroy()
+      listContactsView.on 'childview:contact:delete', (childView, args) ->
+        args.model.destroy()
 
-      listContactsView.on 'childview:contact:show', (childView, model) =>
-        @showContact(model.get('id'))
+      listContactsView.on 'childview:contact:show', (childView, args) =>
+        @showContact(args.model.get('id'))
 
-      listContactsView.on 'childview:contact:edit', (childView, model) =>
+      listContactsView.on 'childview:contact:edit', (childView, args) =>
+        model = args.model
         view = new EditContactView
           model: model
           asModal: true

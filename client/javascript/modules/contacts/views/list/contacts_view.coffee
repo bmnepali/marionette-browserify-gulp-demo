@@ -7,3 +7,15 @@ module.exports = Marionette.CompositeView.extend
   template: require '../templates/list_contacts_table'
   childView: ContactView
   childViewContainer: 'tbody'
+
+  initialize: ->
+    @listenTo(@collection, 'reset', ->
+      @appendHtml = (collectionView, itemView, index) ->
+        collectionView.$el.append itemView.el
+    )
+
+  onCompositeCollectionRendered: ->
+    @appendHtml = (collectionView, itemView, index) ->
+      collectionView.$el.prepend itemView.el
+
+

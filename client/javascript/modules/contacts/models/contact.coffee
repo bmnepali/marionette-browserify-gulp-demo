@@ -6,6 +6,11 @@ module.exports = Backbone.Model.extend
   urlRoot: 'contacts'
   localStorage: new localStorage('contacts-module')
 
+  default:
+    firstName: ''
+    lastName: ''
+    phoneNumber: ''
+
   validate: (attrs, options) ->
     errors = {}
     if not attrs.firstName

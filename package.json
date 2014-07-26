@@ -12,13 +12,13 @@
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "jquery.spin": "./client/javascript/vendor/jquery-spin-browserify-shimmed.js",
     "spin": "./bower_components/spin.js/spin.js",
-    "lodash": "./bower_components/lodash/dist/lodash.underscore.js",
+    "underscore": "./bower_components/lodash/dist/lodash.underscore.js",
     "backbone": "./bower_components/backbone/backbone.js",
     "backbone.wreqr": "./bower_components/backbone.wreqr/lib/backbone.wreqr.js",
     "backbone.babysitter": "./bower_components/backbone.babysitter/lib/backbone.babysitter.js",
     "backbone.marionette": "./bower_components/backbone.marionette/lib/backbone.marionette.js",
     "backbone.picky": "./bower_components/backbone.picky/lib/backbone.picky.js",
-    "backbone.syphon": "./bower_components/backbone.syphon/lib/backbone.syphon.js",
+    "backbone.syphon": "./client/javascript/vendor/backbone-syphon-browserify-shimmed.js",
     "backbone.localstorage": "./bower_components/backbone.localstorage/backbone.localStorage.js"
   },
   "browserify": {

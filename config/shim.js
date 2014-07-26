@@ -1,5 +1,6 @@
 module.exports = {
     "jquery": "$",
+    "jquery": "jQuery",
     "spin":"spin",
     "lodash": "_",
     "backbone": {
