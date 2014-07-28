@@ -31,7 +31,9 @@ module.exports = Marionette.Controller.extend
       if contact is undefined
         editContactView = new MissingContactView()
       else
-        editContactView = new EditContactView model: contact
+        editContactView = new EditContactView
+          model: contact
+          generateTitle: true
 
       @options.mainRegion.show(editContactView)
 
@@ -77,7 +79,6 @@ module.exports = Marionette.Controller.extend
 
         newContactView = new NewContactView
           model: newContact
-          asModal: true
 
         @options.dialogRegion.show(newContactView)
 
@@ -89,7 +90,7 @@ module.exports = Marionette.Controller.extend
             data.id = 1
           if newContact.save data
             contacts.add(newContact)
-            @options.dialogRegion.close()
+            newContactView.trigger 'dialog:close'
             listContactsView.children.findByModel(newContact).flash('success')
           else
             newContactView.triggerMethod 'form:data:invalid', newContact.validationError
@@ -108,12 +109,11 @@ module.exports = Marionette.Controller.extend
         model = args.model
         view = new EditContactView
           model: model
-          asModal: true
 
         view.on "form:submit", (data) =>
           if model.save(data)
             childView.render()
-            @options.dialogRegion.empty()
+            view.trigger 'dialog:close'
             childView.flash "success"
           else
             view.triggerMethod "form:data:invalid", model.validationError

@@ -9,18 +9,6 @@ module.exports = Marionette.ItemView.extend
   events:
     'click button.js-submit': 'submitClicked'
 
-  onRender: ->
-    if not @options.asModal
-      $title = $("<h1>", { text: @title })
-      @$el.prepend($title)
-
-  onShow: ->
-    if @options.asModal
-      @$el.dialog
-        modal: true
-        itle: @title
-        width: 'auto'
-
   submitClicked: (e) ->
     e.preventDefault()
     data = Backbone.Syphon.serialize(this)
