@@ -49,7 +49,6 @@ module.exports = (options) ->
 
     # reset the filtered collection with the new items
     filtered.reset items
-    return
 
   # if the original collection gets models added to it:
   # 1. create a new collection
@@ -61,6 +60,5 @@ module.exports = (options) ->
     coll.add models
     items = applyFilter(filtered._currentCriterion, filtered._currentFilter, coll)
     filtered.add items
-    return
 
   filtered
