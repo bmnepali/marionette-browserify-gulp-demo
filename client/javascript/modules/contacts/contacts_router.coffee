@@ -2,6 +2,6 @@ Marionette = require 'backbone.marionette'
 
 module.exports = Marionette.AppRouter.extend
   appRoutes:
-    "contacts": "listContacts"
+    "contacts(/filter/criterion::criterion)": "listContacts"
     "contacts/:id": "showContact"
     "contacts/:id/edit": "editContact"

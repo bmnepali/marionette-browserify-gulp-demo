@@ -62,7 +62,7 @@ module.exports = Marionette.Controller.extend
       showContactView.on 'childview:contact:edit', (childview, model) =>
         @editContact(model.get('id'))
 
-  listContacts: ->
+  listContacts: (criterion) ->
     loadingView = new LoadingView()
     @options.mainRegion.show loadingView
 
@@ -83,10 +83,18 @@ module.exports = Marionette.Controller.extend
             -1 or contact.get('phoneNumber').toLowerCase().indexOf(criterion) isnt -1
               contact
 
+      if criterion
+        filteredContacts.filter(criterion)
+        panelView.once('show', ->
+          panelView.triggerMethod "set:filter:criterion", criterion
+        )
+
       listContactsView = new ListContactsView collection: filteredContacts
 
       panelView.on 'contacts:filter', (filterCriterion) ->
         filteredContacts.filter(filterCriterion)
+        Radio.vent.trigger 'global', 'contacts:filter', filterCriterion
+
 
       panelView.on 'contact:new', =>
         newContact = new ContactModel()
@@ -142,3 +150,9 @@ module.exports = Marionette.Controller.extend
     Radio.vent.on 'global', 'contacts:list', =>
       Backbone.history.navigate 'contacts'
       @listContacts()
+
+    Radio.vent.on 'global', 'contacts:filter', (criterion) ->
+      if criterion
+        Backbone.history.navigate 'contacts/filter/criterion:' + criterion
+      else
+        Backbone.history.navigate 'contacts'
