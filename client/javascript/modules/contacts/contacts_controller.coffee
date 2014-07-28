@@ -14,6 +14,7 @@ LoadingView = require './views/common/loading_view'
 
 ContactEntity = require './entities/contact'
 ContactModel = require './models/contact'
+FilteredCollection = require '../../common/filtered_collections'
 
 module.exports = Marionette.Controller.extend
   initialize: ->
@@ -72,7 +73,20 @@ module.exports = Marionette.Controller.extend
     panelView = new ListPanelView()
 
     $.when(fetchingContacts).done (contacts) =>
-      listContactsView = new ListContactsView collection: contacts
+      filteredContacts = FilteredCollection
+        collection: contacts
+        filterFunction: (filterCriterion) ->
+          criterion = filterCriterion.toLowerCase()
+          (contact) ->
+            if contact.get('firstName').toLowerCase().indexOf(criterion) isnt
+            -1 or contact.get('lastName').toLowerCase().indexOf(criterion) isnt
+            -1 or contact.get('phoneNumber').toLowerCase().indexOf(criterion) isnt -1
+              contact
+
+      listContactsView = new ListContactsView collection: filteredContacts
+
+      panelView.on 'contacts:filter', (filterCriterion) ->
+        filteredContacts.filter(filterCriterion)
 
       panelView.on 'contact:new', =>
         newContact = new ContactModel()
@@ -91,7 +105,9 @@ module.exports = Marionette.Controller.extend
           if newContact.save data
             contacts.add(newContact)
             newContactView.trigger 'dialog:close'
-            listContactsView.children.findByModel(newContact).flash('success')
+            newContactView = listContactsView.children.findByModel(newContact)
+            if newContactView
+              newContactView.flash('success')
           else
             newContactView.triggerMethod 'form:data:invalid', newContact.validationError
 

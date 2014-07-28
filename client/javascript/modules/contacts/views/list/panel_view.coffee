@@ -5,3 +5,12 @@ module.exports = Marionette.ItemView.extend
 
   triggers:
     'click button.js-new': 'contact:new'
+
+  events:
+    'submit #filter-form': 'filterContacts'
+
+  filterContacts: (e) ->
+    e.preventDefault()
+    criterion = @$('.js-filter-criterion').val()
+    @trigger('contacts:filter', criterion)
+
