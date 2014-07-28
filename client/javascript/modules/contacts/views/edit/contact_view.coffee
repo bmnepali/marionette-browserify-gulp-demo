@@ -9,3 +9,5 @@ module.exports = CommonFormView.extend
       $title = $("<h1>", { text: @title })
       @$el.prepend($title)
 
+    @$('.js-submit').text('Update contact')
+
