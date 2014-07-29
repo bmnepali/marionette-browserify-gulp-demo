@@ -4,12 +4,7 @@ AboutController = require './about_controller'
 
 module.exports = class AboutModule extends Marionette.Module
   onStart: ->
-    @addRegion()
     @startMediator()
-
-  addRegion: ->
-    @app.addRegions
-      mainRegion: "#main-region"
 
   startMediator: ->
     @controller = new AboutController

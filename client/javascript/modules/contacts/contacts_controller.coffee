@@ -37,6 +37,7 @@ module.exports = Marionette.Controller.extend
           generateTitle: true
 
       @options.mainRegion.show(editContactView)
+      Radio.commands.execute "global", "set:active:header", "contacts"
 
       editContactView.on 'form:submit', (data) =>
         if contact.save data
@@ -58,6 +59,7 @@ module.exports = Marionette.Controller.extend
         showContactView = new ShowContactView model: contact
 
       @options.mainRegion.show(showContactView)
+      Radio.commands.execute "global", "set:active:header", "contacts"
 
       showContactView.on 'childview:contact:edit', (childview, model) =>
         @editContact(model.get('id'))
@@ -145,6 +147,7 @@ module.exports = Marionette.Controller.extend
         @options.dialogRegion.show(view)
 
       @options.mainRegion.show(layoutView)
+      Radio.commands.execute "global", "set:active:header", "contacts"
 
   setHandlers: ->
     Radio.vent.on 'global', 'contacts:list', =>
