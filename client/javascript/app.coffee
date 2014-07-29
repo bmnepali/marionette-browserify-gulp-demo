@@ -1,7 +1,9 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
-ContactsModule = require './modules/contacts/contacts_module'
 Radio = require './radio'
+
+ContactsModule = require './modules/contacts/contacts_module'
+AboutModule = require './modules/about/about_module'
 
 App = new Marionette.Application()
 
@@ -16,6 +18,7 @@ App.on 'start', ->
       Radio.vent.trigger 'global', 'contacts:list'
 
 App.module 'contacts', ContactsModule
+App.module 'about', AboutModule
 
 module.exports = App
 
