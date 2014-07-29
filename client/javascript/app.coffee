@@ -3,6 +3,7 @@ Marionette = require 'backbone.marionette'
 Radio = require './radio'
 
 ContactsModule = require './modules/contacts/contacts_module'
+ContactsRemoteApiModule = require './modules/contacts_remote_api/contacts_module'
 AboutModule = require './modules/about/about_module'
 HeaderModule = require './modules/header/header_module'
 TodoModule = require './modules/todo/todo_module'
@@ -28,6 +29,7 @@ App.on 'start', ->
 
 App.module 'header', HeaderModule
 App.module 'contacts', ContactsModule
+# App.module 'contactsRemoteApi', ContactsRemoteApiModule
 App.module 'about', AboutModule
 App.module 'todo', TodoModule
 

@@ -2,7 +2,7 @@ Marionette = require 'backbone.marionette'
 ContactsRouter = require './contacts_router'
 ContactsController = require './contacts_controller'
 
-module.exports = class ContactsModule extends Marionette.Module
+module.exports = class ContactsRemoteApiModule extends Marionette.Module
   onStart: ->
     @startMediator()
 
