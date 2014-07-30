@@ -28,8 +28,8 @@ App.on 'start', ->
       Radio.vent.trigger 'global', 'contacts:list'
 
 App.module 'header', HeaderModule
-App.module 'contacts', ContactsModule
-# App.module 'contactsRemoteApi', ContactsRemoteApiModule
+# App.module 'contacts', ContactsModule
+App.module 'contactsRemoteApi', ContactsRemoteApiModule
 App.module 'about', AboutModule
 App.module 'todo', TodoModule
 

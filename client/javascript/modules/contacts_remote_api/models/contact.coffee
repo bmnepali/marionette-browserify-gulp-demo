@@ -1,8 +1,14 @@
 Backbone = require 'backbone'
 _ = require 'underscore'
+BaseModel = require './base'
 
-module.exports = Backbone.Model.extend
-  urlRoot: 'contacts'
+module.exports = BaseModel.extend
+  initialize: (options) ->
+    options or (options = {})
+
+  urlRoot: 'http://localhost:3333'
+  url: ->
+    _.result(@, "urlRoot") + "/contacts"
 
   default:
     firstName: ''
@@ -24,4 +30,56 @@ module.exports = Backbone.Model.extend
         errors.lastName = "too short"
 
     errors if not _.isEmpty errors
+
+  sync: (method, model, options) ->
+    self = @
+    config = {}
+
+    switch(method)
+      when 'create'
+        # config = _.extend config,
+        #   method: "POST"
+        #   url: _.result(@, "urlRoot") + "/user/repos"
+        #   data: JSON.stringify model.pick(
+        #     "name"
+        #     "description"
+        #     "homepage"
+        #     "private"
+        #     "has_issues"
+        #     "has_wiki"
+        #     "has_downloads"
+        #     "team_id"
+        #     "auto_init"
+        #     "gitignore_template"
+        #   )
+        break
+
+      when 'read'
+        config = _.extend config,
+          method: "GET"
+        break
+
+      when 'update'
+        # config = _.extend config,
+        #   method: "PATCH"
+        #   data: JSON.stringify model.pick(
+        #     "name"
+        #     "description"
+        #     "homepage"
+        #     "private"
+        #     "has_issues"
+        #     "has_wiki"
+        #     "has_downloads"
+        #     "default_branch"
+        #   )
+        break
+
+      when 'delete'
+        config = _.extend config,
+          method: "DELETE"
+        break
+
+    options = _.extend(options, config)
+
+    Backbone.Model::sync.call(@, method, model, options)
 

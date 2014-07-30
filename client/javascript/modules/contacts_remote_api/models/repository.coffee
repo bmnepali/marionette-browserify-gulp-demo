@@ -1,10 +1,12 @@
 Backbone = require 'backbone'
 _ = require 'underscore'
+BaseModel = require './base'
 
-module.exports = Backbone.Model.extend
-  initialize: ->
-    @username = window.u
-    @password = window.p
+module.exports = BaseModel.extend
+  initialize: (options) ->
+    options or (options = {})
+    @username = options.username or window.username
+    @password = options.password or window.password
 
     self = @
     @on "sync", ->
