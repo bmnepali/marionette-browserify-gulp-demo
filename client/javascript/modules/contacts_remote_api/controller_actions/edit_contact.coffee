@@ -14,29 +14,38 @@ module.exports = (id) ->
   Backbone.history.navigate "contacts/#{id}/edit"
 
   $.when(fetchingContact).done (contact) =>
-    editContactView = new EditContactView
+    view = new EditContactView
       model: contact
       generateTitle: true
 
-    editContactView.on 'form:submit', (data) =>
-      savingContact = contact.save data
+    view.on 'form:submit', (data) =>
+      contact.set data, silent: true
+      savingContact = contact.save data, wait: true
       if savingContact
+        view.onBeforeClose = ->
+          contact.set changedOnServer: false
+
         $.when(savingContact).done =>
           @showContact contact.get('id')
+
         .fail (response) ->
           if response.status is 422
-            editContactView.triggerMethod "form:data:invalid", response.responseJSON.errors
+            keys = ['firstName', 'lastName', 'phoneNumber']
+            contact.refresh response.responseJSON.entity, keys
+            view.render()
+            view.triggerMethod "form:data:invalid", response.responseJSON.errors
+            contact.set response.responseJSON.entity, silent: true
           else
             console.log 'an unprocessed error, try again.'
       else
-        editContactView.triggerMethod "form:data:invalid", contact.validationError
+        view.triggerMethod "form:data:invalid", contact.validationError
 
-    @options.mainRegion.show(editContactView)
+    @options.mainRegion.show(view)
 
   .fail (response) =>
     if response.status is 404
-      editContactView = new MissingContactView()
-      @options.mainRegion.show(editContactView)
+      view = new MissingContactView()
+      @options.mainRegion.show(view)
     else
       console.log 'unprocessed error'
 
