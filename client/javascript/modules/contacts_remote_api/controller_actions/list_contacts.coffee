@@ -52,18 +52,27 @@ module.exports = (criterion) ->
       newContactView = new NewContactView
         model: newContact
 
-      @options.dialogRegion.show(newContactView)
-
       newContactView.on 'form:submit', (data) ->
-        contactSaved = newContact.save data,
-          success: ->
+        savingContact = newContact.save data
+        if savingContact
+          $.when(savingContact).done ->
             contacts.add(newContact)
             newContactView.trigger 'dialog:close'
             newContactView = listContactsView.children.findByModel(newContact)
             if newContactView
               newContactView.flash('success')
-          if not contactSaved
-            newContactView.triggerMethod 'form:data:invalid', newContact.validationError
+          .fail (response) ->
+            newContactView.onClose = ->
+              newContact.set(newContact.previousAttributes())
+
+            if response.status is 422
+              newContactView.triggerMethod 'form:data:invalid', response.responseJSON.errors
+            else
+              console.log 'unprocessed error, try again'
+         else
+           newContactView.triggerMethod 'form:data:invalid', newContact.validationError
+
+      @options.dialogRegion.show(newContactView)
 
     layoutView.on 'show', ->
       @panelRegion.show panelView
@@ -80,13 +89,23 @@ module.exports = (criterion) ->
       view = new EditContactView
         model: model
 
-      view.on "form:submit", (data) =>
-        if model.save(data)
-          childView.render()
-          view.trigger 'dialog:close'
-          childView.flash "success"
+      view.on "form:submit", (data) ->
+        savingContact = model.save data
+        if savingContact
+          $.when(savingContact).done ->
+            childView.render()
+            view.trigger 'dialog:close'
+            childView.flash "success"
+          .fail (response) ->
+            view.onClose = ->
+              model.set(model.previousAttributes())
+
+          if response.status is 422
+            newContactView.triggerMethod 'form:data:invalid', response.responseJSON.errors
+          else
+            console.log 'unprocessed error, try again'
         else
-          view.triggerMethod "form:data:invalid", model.validationError
+          view.triggerMethod 'form:data:invalid', model.validationError
 
       @options.dialogRegion.show(view)
 
