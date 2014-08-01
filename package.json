@@ -7,7 +7,6 @@
     "url": "https://github.com/dqdinh/marionette-browserify-gulp-express-starter.git"
   },
   "browser": {
-    "bootstrap-sass": "~3.0.2",
     "jqueryui": "./client/javascript/vendor/jquery-ui-browserify-shimmed.js",
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "jquery.spin": "./client/javascript/vendor/jquery-spin-browserify-shimmed.js",
@@ -19,7 +18,8 @@
     "backbone.marionette": "./bower_components/backbone.marionette/lib/backbone.marionette.js",
     "backbone.picky": "./bower_components/backbone.picky/lib/backbone.picky.js",
     "backbone.syphon": "./client/javascript/vendor/backbone-syphon-browserify-shimmed.js",
-    "backbone.localstorage": "./bower_components/backbone.localstorage/backbone.localStorage.js"
+    "backbone.localstorage": "./bower_components/backbone.localstorage/backbone.localStorage.js",
+    "backbone-validation": "./client/javascript/vendor/backbone-validation-browserified.js"
   },
   "browserify": {
     "transform": [

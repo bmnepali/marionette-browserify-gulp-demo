@@ -28,6 +28,12 @@ module.exports = {
             "backbone":"Backbone"
         }
     },
+    "backbone-validation": {
+        "exports": "Backbone.Validation",
+        "depends": {
+          "backbone":"Backbone"
+        }
+    },
     "backbone.picky": {
         "exports": "Backbone.Picky",
         "depends": {

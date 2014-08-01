@@ -1,6 +1,9 @@
 Backbone = require 'backbone'
 _ = require 'underscore'
 BaseModel = require './base'
+Backbone.Validation = require '../../../common/extend_backbone_validation'
+
+_.extend BaseModel::, Backbone.Validation.mixin
 
 module.exports = BaseModel.extend
   initialize: (options) ->
@@ -16,21 +19,13 @@ module.exports = BaseModel.extend
     phoneNumber: ''
     changedOnServer: false
 
-  validate: (attrs, options) ->
-    errors = {}
-    if not attrs.firstName
-      errors.firstName = "can't be blank"
-    else
-      if attrs.firstName.length < 2
-        errors.firstName = "too short"
+  validation:
+    firstName:
+      required: true
 
-    if not attrs.lastName
-      errors.lastName = "can't be blank"
-    else
-      if attrs.lastName.length < 2
-        errors.lastName = "too short"
-
-    errors if not _.isEmpty errors
+    lastName:
+      required: true
+      minLength: 2
 
   sync: (method, model, options) ->
     console.log "Contact's sync function called."
@@ -39,21 +34,6 @@ module.exports = BaseModel.extend
 
     switch(method)
       when 'create'
-        # config = _.extend config,
-        #   method: "POST"
-        #   url: _.result(@, "urlRoot") + "/user/repos"
-        #   data: JSON.stringify model.pick(
-        #     "name"
-        #     "description"
-        #     "homepage"
-        #     "private"
-        #     "has_issues"
-        #     "has_wiki"
-        #     "has_downloads"
-        #     "team_id"
-        #     "auto_init"
-        #     "gitignore_template"
-        #   )
         break
 
       when 'read'

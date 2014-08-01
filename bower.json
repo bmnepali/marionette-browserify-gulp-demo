@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "backbone.localstorage": "~1.1.7",
+    "backbone-validation": "~0.9.1",
     "bootstrap-sass-official": "~3.2.0",
     "jqueryui": "~1.11.0",
     "spin.js": "~2.0.1",
