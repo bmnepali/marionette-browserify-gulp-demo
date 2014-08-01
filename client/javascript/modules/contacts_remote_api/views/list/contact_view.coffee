@@ -23,6 +23,9 @@ module.exports = Marionette.ItemView.extend
       ), 500)
     )
 
+  modelEvents:
+    "change": "render"
+
   remove: ->
     self = @
     @$el.fadeOut ->

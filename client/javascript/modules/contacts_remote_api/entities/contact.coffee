@@ -11,13 +11,19 @@ module.exports =
   initialize: ->
     @setHandlers()
 
-  getContactEntities: ->
+  getContactEntities: (options) ->
     contacts = new ContactsCollection()
     defer = $.Deferred()
 
-    contacts.fetch
-      success: (data) ->
-        defer.resolve(data)
+    options or (options = {})
+    defer.then(options.success, options.error)
+    response = contacts.fetch(_.omit(options, 'success', 'error'))
+
+    response.done ->
+      defer.resolveWith(response, [contacts])
+
+    response.fail ->
+      defer.rejectWith(response, arguments)
 
     defer.promise()
 
@@ -41,8 +47,8 @@ module.exports =
     defer.promise()
 
   setHandlers: ->
-    Radio.reqres.setHandler "global", "contact:entities", =>
-      @getContactEntities()
+    Radio.reqres.setHandler "global", "contact:entities", (options) =>
+      @getContactEntities(options)
 
     Radio.reqres.setHandler "global", "contact:entity", (id, options) =>
       @getContactEntity(id, options)

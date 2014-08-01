@@ -90,24 +90,39 @@ module.exports = (criterion) ->
         model: model
 
       view.on "form:submit", (data) ->
-        savingContact = model.save data
+        model.set data, silent: true
+        savingContact = model.save data, wait: true
         if savingContact
+          view.onBeforeClose = ->
+            model.set changedOnServer: false
+
           $.when(savingContact).done ->
             childView.render()
+            delete view.onClose
             view.trigger 'dialog:close'
             childView.flash "success"
           .fail (response) ->
-            view.onClose = ->
-              model.set(model.previousAttributes())
+            if response.status is 422
+              view.onClose = ->
+                model.set(response.responseJSON.entity)
 
-          if response.status is 422
-            newContactView.triggerMethod 'form:data:invalid', response.responseJSON.errors
-          else
-            console.log 'unprocessed error, try again'
+              keys = ['firstName', 'lastName', 'phoneNumber']
+              model.refresh response.responseJSON.entity, keys
+
+              view.render()
+              newContactView.triggerMethod 'form:data:invalid', response.responseJSON.errors
+              model.set response.responseJSON.entity, silent: true
+            else
+              console.log 'unprocessed error, try again'
         else
+          view.onClose = ->
+            model.set(model.previousAttributes())
           view.triggerMethod 'form:data:invalid', model.validationError
 
       @options.dialogRegion.show(view)
 
     @options.mainRegion.show(layoutView)
-    Radio.commands.execute "global", "set:active:header", "contacts"
+  .fail ->
+    console.log 'unprocessed error'
+
+  Radio.commands.execute "global", "set:active:header", "contacts"

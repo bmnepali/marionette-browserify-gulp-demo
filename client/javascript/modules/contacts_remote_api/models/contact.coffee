@@ -12,6 +12,7 @@ module.exports = BaseModel.extend
     firstName: ''
     lastName: ''
     phoneNumber: ''
+    changedOnServer: false
 
   validate: (attrs, options) ->
     errors = {}

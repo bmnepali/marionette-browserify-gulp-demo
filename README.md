@@ -19,6 +19,13 @@ Includes the following tools, tasks, and workflows:
 - Karma with Mocha tests using Browserify to bundle a test runner.
 - Test coverage using Istanbul through Karma-coverage.
 
+Also includes the following demo apps:
+- Todo sub-app (from Marionetteify repo)
+- Contacts sub-app using backbone.localStorage(from the "Marionette: A Gentle Introduction" book)
+- Contacts sub-app using a remote server (from the "Marionette: A Serious Progression" book)
+
+TODO: hook up remote contacts app to mock API.
+
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
 ```
