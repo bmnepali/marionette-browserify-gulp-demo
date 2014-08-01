@@ -3,6 +3,7 @@ ContactsCollection = require '../collections/contacts'
 ContactModel = require '../models/contact'
 Radio = require '../../../radio'
 $ = require 'jquery'
+_ = require 'underscore'
 
 contacts = 'undefined'
 
@@ -20,15 +21,22 @@ module.exports =
 
     defer.promise()
 
-  getContactEntity: (id) ->
+  getContactEntity: (id, options) ->
     contact = new ContactModel {id}
     defer = $.Deferred()
 
-    contact.fetch
-      success: (data) ->
-        defer.resolve data
-      error: (data) ->
-        defer.resolve 'undefined'
+    options or (options = {})
+    defer.then(options.success, options.error)
+
+    response = contact.fetch(_.omit(options, 'success', 'error'))
+
+    response.done ->
+      defer.resolveWith response, [contact]
+      console.log "success: " + response.status
+
+    response.fail ->
+      defer.rejectWith response, arguments
+      console.log "fail: " + response.status
 
     defer.promise()
 
@@ -36,6 +44,6 @@ module.exports =
     Radio.reqres.setHandler "global", "contact:entities", =>
       @getContactEntities()
 
-    Radio.reqres.setHandler "global", "contact:entity", (id) =>
-      @getContactEntity(id)
+    Radio.reqres.setHandler "global", "contact:entity", (id, options) =>
+      @getContactEntity(id, options)
 

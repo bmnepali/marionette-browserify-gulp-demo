@@ -5,9 +5,7 @@ module.exports = Backbone.Collection.extend
   initialize: (options) ->
     options or (options = {})
 
-  urlRoot: 'http://localhost:3333'
-  url: ->
-    _.result(@, "urlRoot") + "/contacts"
+  url: 'http://0.0.0.0:3001/contacts'
 
   model: Contact
   comparator: "firstName"
