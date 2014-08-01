@@ -5,7 +5,7 @@ module.exports = CommonFormView.extend
     @title = "Edit " + @model.get('firstName') + " " + @model.get('lastName')
 
   onRender: ->
-    if not @options.asModal
+    if not @options.generateTitle
       $title = $("<h1>", { text: @title })
       @$el.prepend($title)
 

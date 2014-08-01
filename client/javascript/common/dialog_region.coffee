@@ -6,12 +6,16 @@ module.exports = Marionette.Region.extend
     @listenTo(view, 'dialog:close', @closeDialog)
 
     self = @
-    @$el.dialog
-      modal: true
-      title: view.title
-      width: 'auto'
-      close: (e, ui) ->
-        self.closeDialog()
+    configureDialog = =>
+      @$el.dialog
+        modal: true
+        title: view.title
+        width: 'auto'
+        position: 'center'
+        close: (e, ui) ->
+          self.closeDialog()
+    configureDialog()
+    @listenTo(view, 'render', configureDialog)
 
   closeDialog: ->
     @stopListening()

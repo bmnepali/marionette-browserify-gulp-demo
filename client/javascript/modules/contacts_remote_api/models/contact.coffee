@@ -5,6 +5,8 @@ BaseModel = require './base'
 module.exports = BaseModel.extend
   initialize: (options) ->
     options or (options = {})
+    @on "change", ->
+      @set 'fullName', @get('firstName') + " " + @get('lastName')
 
   urlRoot: 'http://0.0.0.0:3001/contacts'
 
