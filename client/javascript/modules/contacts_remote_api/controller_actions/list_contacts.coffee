@@ -9,9 +9,10 @@ NewContactView = require '../views/new/new_view'
 EditContactView = require '../views/edit/contact_view'
 MissingContactView = require '../views/show/missing_contact_view'
 LoadingView = require '../views/common/loading_view'
+PaginatedView = require '../../../common/views/paginated_view'
 
 ContactModel = require '../models/contact'
-FilteredCollection = require '../../../common/filtered_collections'
+# FilteredCollection = require '../../../common/filtered_collections'
 
 module.exports = (criterion) ->
   loadingView = new LoadingView()
@@ -24,26 +25,39 @@ module.exports = (criterion) ->
   panelView = new ListPanelView()
 
   $.when(fetchingContacts).done (contacts) =>
-    filteredContacts = FilteredCollection
-      collection: contacts
-      filterFunction: (filterCriterion) ->
-        criterion = filterCriterion.toLowerCase()
-        (contact) ->
-          if contact.get('firstName').toLowerCase().indexOf(criterion) isnt
-          -1 or contact.get('lastName').toLowerCase().indexOf(criterion) isnt
-          -1 or contact.get('phoneNumber').toLowerCase().indexOf(criterion) isnt -1
-            contact
+    # filteredContacts = FilteredCollection
+    #   collection: contacts
+    #   filterFunction: (filterCriterion) ->
+    #     criterion = filterCriterion.toLowerCase()
+    #     (contact) ->
+    #       if contact.get('firstName').toLowerCase().indexOf(criterion) isnt
+    #       -1 or contact.get('lastName').toLowerCase().indexOf(criterion) isnt
+    #       -1 or contact.get('phoneNumber').toLowerCase().indexOf(criterion) isnt -1
+    #         contact
 
     if criterion
-      filteredContacts.filter(criterion)
+      # filteredContacts.filter(criterion)
+      contacts.parameters.set criterion: criterion
       panelView.once('show', ->
         panelView.triggerMethod "set:filter:criterion", criterion
       )
 
-    listContactsView = new ListContactsView collection: filteredContacts
+    # listContactsView = new ListContactsView collection: filteredContacts
+    contacts.goTo(1)
+    ListContactsView = new PaginatedView
+      collection: contacts
+      mainView: ListContactsView
+      propagatedEvents: [
+        "childview:contact:show"
+        "childview:contact:edit"
+        "childview:contact:delete"
+      ]
 
     panelView.on 'contacts:filter', (filterCriterion) ->
-      filteredContacts.filter(filterCriterion)
+      # filteredContacts.filter(filterCriterion)
+      contacts.parameters.set
+        page: 1
+        criterion: filterCriterion
       Radio.vent.trigger 'global', 'contacts:filter', filterCriterion
 
     panelView.on 'contact:new', =>

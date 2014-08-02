@@ -1,13 +1,12 @@
 module.exports = {
     "jquery": "$",
-    "jquery": "jQuery",
     "spin":"spin",
-    "lodash": "_",
+    "underscore": "_",
     "backbone": {
         "exports": "Backbone",
         "depends": {
            "jquery":"$",
-           "lodash":"_"
+           "underscore":"_"
         }
     },
     "jquery.spin": {
@@ -19,7 +18,7 @@ module.exports = {
     },
     "jqueryui": {
         "depends": {
-           "jquery":"$",
+           "jquery":"$"
         }
     },
     "backbone.localstorage": {
@@ -30,6 +29,11 @@ module.exports = {
     },
     "backbone-validation": {
         "exports": "Backbone.Validation",
+        "depends": {
+          "backbone":"Backbone"
+        }
+    },
+    "backbone.paginator": {
         "depends": {
           "backbone":"Backbone"
         }
