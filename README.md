@@ -20,11 +20,11 @@ Includes the following tools, tasks, and workflows:
 - Test coverage using Istanbul through Karma-coverage.
 
 Also includes the following demo apps:
-- Todo sub-app (from Marionetteify repo)
-- Contacts sub-app using backbone.localStorage(from the "Marionette: A Gentle Introduction" book)
-- Contacts sub-app using a remote server (from the "Marionette: A Serious Progression" book)
 
-TODO: hook up remote contacts app to mock API.
+- Todo module (from Marionetteify repo)
+- Contacts demo using backbone.localStorage(from the "Marionette: A Gentle Introduction" book)
+- Contacts demo using a rails remote server (from the "Marionette: A Serious Progression" book)
+- Contacts demo using remote server + backgrid + backbone.paginator
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
@@ -68,6 +68,15 @@ gulp
 gulp withMockApi
 ```
 Note: Requires MongoDB running in the backgound.
+
+### Run Contacts App with Rails Backend
+Download Rails app - https://github.com/dqdinh/marionette-serious-progression-server/tree/make-CORS-work
+NOTE: This was forked from David Sulc's repo and modified to make CORS work.
+```
+bundle install
+rake db:migrate
+rake fake:contacts
+```
 
 ### Run gulp with Tests / Coverage Reports
 Make sure you've required all your tests in 'test/runner.coffee'.

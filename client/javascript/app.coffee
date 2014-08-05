@@ -3,8 +3,8 @@ Marionette = require 'backbone.marionette'
 Radio = require './radio'
 require 'backbone.paginator'
 
-ContactsModule = require './modules/contacts/contacts_module'
-ContactsRemoteApiModule = require './modules/contacts_remote_api/contacts_module'
+GentleContactsModule = require './modules/a_gentle_introduction_contacts_app/contacts_module'
+SeriousContactsModule = require './modules/a_serious_progression_contacts_app/contacts_module'
 AboutModule = require './modules/about/about_module'
 HeaderModule = require './modules/header/header_module'
 TodoModule = require './modules/todo/todo_module'
@@ -29,8 +29,8 @@ App.on 'start', ->
       Radio.vent.trigger 'global', 'contacts:list'
 
 App.module 'header', HeaderModule
-# App.module 'contacts', ContactsModule
-App.module 'contactsRemoteApi', ContactsRemoteApiModule
+# App.module 'contacts', GentleContactsModule
+App.module 'seriousContactsModule', SeriousContactsModule
 App.module 'about', AboutModule
 App.module 'todo', TodoModule
 
