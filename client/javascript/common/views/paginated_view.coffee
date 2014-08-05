@@ -3,7 +3,7 @@ $ = require 'jquery'
 PaginationControls = require './pagination_controls_view'
 _ = require 'underscore'
 
-module.exports = Marionette.ItemView.extend
+module.exports = Marionette.LayoutView.extend
   template: require './templates/paginated_view'
 
   regions:
@@ -12,21 +12,12 @@ module.exports = Marionette.ItemView.extend
 
   initialize: (options) ->
     @collection = options.collection
-    eventsToPropagate = options.propagatedEvents || []
 
     controls = new PaginationControls paginatedCollection: @collection
 
     listView = new options.mainView {@collection}
 
-    self = @
-    @listenTo controls, "page:change", (page) ->
-      self.trigger "page:change", page
-
-    _.each eventsToPropagate, (evt) ->
-      self.listenTo controls, "page:change", (page) ->
-        self.trigger "page:change", page
-
-    @on "show", ->
+    @on "show", =>
       @paginationControlsRegion.show(controls)
       @paginationMainRegion.show(listView)
 

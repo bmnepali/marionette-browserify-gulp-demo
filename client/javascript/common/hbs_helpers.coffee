@@ -1,19 +1,22 @@
 Handlebars = require "hbsfy/runtime"
+_ = require 'underscore'
 
-isArray = (value) ->
-  Object::toString.call(value) is "[object Array]"
+class HandlebarsExpressionRegistry
+  constructor: ->
+    @expressions = {}
 
-ExpressionRegistry =
-  @expressions: []
+  add: (operator, method) =>
+    @expressions[operator] = method
 
-ExpressionRegistry::add = (operator, method) ->
-  @expressions[operator] = method
+  call: (operator, left, right) ->
+    throw new Error("Unknown operator \"" + operator + "\"")  unless @expressions.hasOwnProperty(operator)
+    @expressions[operator] left, right
 
-ExpressionRegistry::call = (operator, left, right) ->
-  throw new Error("Unknown operator \"" + operator + "\"")  unless @expressions.hasOwnProperty(operator)
-  @expressions[operator] left, right
+  isArray: (value) ->
+    Object::toString.call(value) is "[object Array]"
 
-eR = new ExpressionRegistry()
+eR = new HandlebarsExpressionRegistry
+
 eR.add "not", (left, right) ->
   left isnt right
 
@@ -36,24 +39,24 @@ eR.add "!==", (left, right) ->
   left isnt right
 
 eR.add "in", (left, right) ->
-  right = right.split(",")  unless isArray(right)
+  right = right.split(",")  unless eR.isArray(right)
   right.indexOf(left) isnt -1
 
 isHelper = ->
-  args = arguments_
+  args = arguments
   left = args[0]
   operator = args[1]
   right = args[2]
   options = args[3]
   if args.length is 2
     options = args[1]
-    return options.fn(this)  if left
-    return options.inverse(this)
+    options.fn(this) if left
+    options.inverse(this)
   if args.length is 3
     right = args[1]
     options = args[2]
-    return options.fn(this)  if left is right
-    return options.inverse(this)
+    options.fn(this) if left is right
+    options.inverse(this)
   return options.fn(this)  if eR.call(operator, left, right)
   options.inverse this
 
@@ -64,12 +67,10 @@ Handlebars.registerHelper "nl2br", (text) ->
   new Handlebars.SafeString(nl2br)
 
 Handlebars.registerHelper "log", ->
-  console.log ["Values:"].concat(Array::slice.call(arguments_, 0, -1))
-  return
+  console.log ["Values:"].concat(Array::slice.call(arguments, 0, -1))
 
 Handlebars.registerHelper "debug", ->
   console.log "Context:", this
-  console.log ["Values:"].concat(Array::slice.call(arguments_, 0, -1))
-  return
+  console.log ["Values:"].concat(Array::slice.call(arguments, 0, -1))
 
 module.exports = Handlebars

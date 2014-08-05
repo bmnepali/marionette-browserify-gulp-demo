@@ -16,7 +16,7 @@ module.exports =
     defer = $.Deferred()
 
     options or (options = {})
-    options.reset = true
+    # options.reset = true
     defer.then(options.success, options.error)
     response = contacts.fetch(_.omit(options, 'success', 'error'))
 

@@ -1,6 +1,7 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 Radio = require './radio'
+require 'backbone.paginator'
 
 ContactsModule = require './modules/contacts/contacts_module'
 ContactsRemoteApiModule = require './modules/contacts_remote_api/contacts_module'

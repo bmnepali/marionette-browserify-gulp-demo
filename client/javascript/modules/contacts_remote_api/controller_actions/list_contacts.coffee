@@ -1,6 +1,7 @@
 Radio = require '../../../radio'
 Backbone = require 'backbone'
 $ = require 'jquery'
+Backgrid = require 'backgrid'
 
 ListContactsView = require '../views/list/contacts_view'
 ListLayoutView = require '../views/list/layout_view'
@@ -12,7 +13,6 @@ LoadingView = require '../views/common/loading_view'
 PaginatedView = require '../../../common/views/paginated_view'
 
 ContactModel = require '../models/contact'
-# FilteredCollection = require '../../../common/filtered_collections'
 
 module.exports = (criterion) ->
   loadingView = new LoadingView()
@@ -25,46 +25,22 @@ module.exports = (criterion) ->
   panelView = new ListPanelView()
 
   $.when(fetchingContacts).done (contacts) =>
-    # filteredContacts = FilteredCollection
-    #   collection: contacts
-    #   filterFunction: (filterCriterion) ->
-    #     criterion = filterCriterion.toLowerCase()
-    #     (contact) ->
-    #       if contact.get('firstName').toLowerCase().indexOf(criterion) isnt
-    #       -1 or contact.get('lastName').toLowerCase().indexOf(criterion) isnt
-    #       -1 or contact.get('phoneNumber').toLowerCase().indexOf(criterion) isnt -1
-    #         contact
+    contacts.getPage(1)
 
-    if criterion
-      # filteredContacts.filter(criterion)
-      contacts.parameters.set criterion: criterion
-      panelView.once('show', ->
-        panelView.triggerMethod "set:filter:criterion", criterion
-      )
-
-    # listContactsView = new ListContactsView collection: filteredContacts
-    contacts.goTo(1)
-    ListContactsView = new PaginatedView
+    clientGrid = new Backgrid.Grid
+      columns: [
+        name: 'firstName', label: 'First Name'
+        name: 'lastName', label: 'Last Name'
+      ],
       collection: contacts
-      mainView: ListContactsView
-      propagatedEvents: [
-        "childview:contact:show"
-        "childview:contact:edit"
-        "childview:contact:delete"
-      ]
 
-    panelView.on 'contacts:filter', (filterCriterion) ->
-      # filteredContacts.filter(filterCriterion)
-      contacts.parameters.set
-        page: 1
-        criterion: filterCriterion
-      Radio.vent.trigger 'global', 'contacts:filter', filterCriterion
+    clientPaginator = new Backgrid.Extension.Paginator
+      collection: contacts
 
-    panelView.on 'contact:new', =>
-      newContact = new ContactModel()
-
-      newContactView = new NewContactView
-        model: newContact
+    listContactsView = new PaginatedView
+      collection: contacts
+      # mainView: ListContactsView
+      mainView: clientGrid
 
       newContactView.on 'form:submit', (data) ->
         savingContact = newContact.save data
