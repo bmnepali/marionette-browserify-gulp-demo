@@ -9,7 +9,7 @@ module.exports = Backbone.PageableCollection.extend
 
   url: 'http://0.0.0.0:3001/contacts'
 
-  comparator: "firstName"
-
   state:
     pageSize: 10
+    sortKey: "lastName"
+    order: 1

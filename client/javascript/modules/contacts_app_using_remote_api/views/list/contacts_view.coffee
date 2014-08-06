@@ -1,23 +1,32 @@
-Marionette = require 'backbone.marionette'
-ContactView = require './contact_view'
-NoContactsView = require './no_contacts_view'
+Backgrid = require 'backgrid'
+DeleteButton = require './delete_button_view'
+EditButton = require './edit_button_view'
+ShowButton = require './show_button_view'
+_ = require 'underscore'
 
-module.exports = Marionette.CompositeView.extend
-  tagName: 'table'
-  className: 'table table-hover'
-  template: require '../templates/list_contacts_table'
-  emptyView: NoContactsView
-  childView: ContactView
-  childViewContainer: 'tbody'
+module.exports = (options) ->
+  new Backgrid.Grid
+    columns: [
+      name: 'id'
+      label: 'ID'
+      cell: 'integer'
+    ,
+      name: 'firstName'
+      label: 'First Name'
+      cell: 'string'
+    ,
+      name: 'lastName'
+      label: 'Last Name'
+      cell: 'string'
+    ,
+      cell: DeleteButton
+      editable: false
+    ,
+      cell: ShowButton
+      editable: false
+    ,
+      cell: EditButton
+      editable: false
+    ]
 
-  initialize: ->
-    @listenTo(@collection, 'reset', ->
-      @appendHtml = (collectionView, itemView, index) ->
-        collectionView.$el.append itemView.el
-    )
-
-  onCompositeCollectionRendered: ->
-    @appendHtml = (collectionView, itemView, index) ->
-      collectionView.$el.prepend itemView.el
-
-
+    collection: options.collection

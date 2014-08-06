@@ -41,8 +41,24 @@ module.exports = {
   "backgrid": {
       "exports": "Backgrid",
       "depends": {
-        "backbone":"Backbone",
+        "backbone":"Backbone"
       }
+  },
+  "backgrid-paginator": {
+      "exports": "Backgrid.Extension.Paginator",
+      "depends": {
+        "backbone":"Backbone",
+        "backgrid":"Backgrid"
+      }
+  },
+  "backgrid-filter": {
+      "depends": {
+        "backbone":"Backbone",
+        "backgrid":"Backgrid"
+      }
+  },
+  "lunr": {
+      "exports": "lunr"
   },
   "backbone.picky": {
       "exports": "Backbone.Picky",

@@ -21,6 +21,9 @@
     "backbone.localstorage": "./bower_components/backbone.localstorage/backbone.localStorage.js",
     "backbone-validation": "./client/javascript/vendor/backbone-validation-browserified.js",
     "backgrid": "./bower_components/backgrid/lib/backgrid.js",
+    "backgrid-filter": "./client/javascript/vendor/backgrid-filter-browserified.js",
+    "backgrid-paginator": "./client/javascript/vendor/backgrid-paginator-browserified.js",
+    "lunr": "./bower_components/lunr.js/lunr.js",
     "backbone.paginator": "./client/javascript/vendor/backbone-paginator-browserified.js"
   },
   "browserify": {
