@@ -1,8 +1,8 @@
 Marionette = require 'backbone.marionette'
-TodoRouter = require './todo_router'
-TodoController = require './todo_controller'
+LibraryRouter = require './library_router'
+LibraryController = require './library_controller'
 
-module.exports = class TodoModule extends Marionette.Module
+module.exports = class LibraryModule extends Marionette.Module
   onStart: ->
     @startMediator()
 
@@ -11,9 +11,9 @@ module.exports = class TodoModule extends Marionette.Module
     @removeRegion()
 
   startMediator: ->
-    @controller = new TodoController
+    @controller = new LibraryController
       mainRegion: @app.mainRegion
-    router = new TodoRouter {@controller}
+    router = new LibraryRouter {@controller}
 
   stopMediator: ->
     @controller.stop()

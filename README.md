@@ -21,9 +21,10 @@ Includes the following tools, tasks, and workflows:
 
 Also includes the following demo apps:
 
-- Todo module (from Marionetteify repo)
-- Contacts demo using backbone.localStorage(from the "Marionette: A Gentle Introduction" book)
-- Contacts demo using a rails remote server (from the "Marionette: A Serious Progression" book)
+- Todo demo (Marionetteify)
+- Library app demonstrating search feature (backbone.marionette-atinux-books)
+- Contacts demo using backbone.localStorage("Marionette: A Gentle Introduction" book)
+- Contacts demo using a rails remote server ("Marionette: A Serious Progression" book)
 - Contacts demo using remote server + backgrid + backbone.paginator
 
 If you've never used Node or npm before, you'll need to install Node.
@@ -106,3 +107,4 @@ Note: Replace ':id' with MongoDB id for the PUT and DELETE requests.
 - https://github.com/davidsulc/marionette-serious-progression-app
 - https://github.com/davidsulc/structuring-backbone-with-requirejs-and-marionette
 - https://github.com/JSteunou/marionetteify
+- https://github.com/davidsulc/backbone.marionette-atinux-books

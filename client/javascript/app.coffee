@@ -13,6 +13,7 @@ ContactsRemoteApi = require './modules/contacts_app_using_remote_api/contacts_mo
 AboutModule = require './modules/about/about_module'
 HeaderModule = require './modules/header/header_module'
 TodoModule = require './modules/todo/todo_module'
+LibraryModule = require './modules/library/library_module'
 DialogRegion = require './common/dialog_region'
 
 App = new Marionette.Application()
@@ -39,5 +40,6 @@ App.module 'header', HeaderModule
 App.module 'contacts', ContactsRemoteApi
 App.module 'about', AboutModule
 App.module 'todo', TodoModule
+App.module 'library', LibraryModule
 
 module.exports = App

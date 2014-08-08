@@ -10,9 +10,13 @@ module.exports =
 
   initializeHeaders: ->
     headers = new HeaderCollection([
-      { name: "contacts", url: "contacts", navigationTrigger: "contacts:list" }
-      { name: "about", url: "about", navigationTrigger: "about:show" }
-      { name: "todo", url: "todo", navigationTrigger: "todo:show" }
+      # { name: "A Gentle Introduction App", url: "contacts", navigationTrigger: "contacts:list" }
+      # { name: "A Serious Progression App", url: "contacts", navigationTrigger: "contacts:list" }
+      # { name: "Contact App w/ Backgrid", url: "contacts", navigationTrigger: "contacts:list" }
+      { name: "Contact", url: "contacts", navigationTrigger: "contacts:list" }
+      { name: "About", url: "about", navigationTrigger: "about:show" }
+      { name: "Todo", url: "todo", navigationTrigger: "todo:show" }
+      { name: "Library", url: "library", navigationTrigger: "library:show" }
     ])
 
   getHeaders: ->
