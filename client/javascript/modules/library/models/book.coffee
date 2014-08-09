@@ -1,5 +1,3 @@
 Backbone = require 'backbone'
-localStorage = require 'backbone.localstorage'
 
-module.exports = Backbone.Model.extend
-  initialize: ->
+module.exports = Backbone.Model
