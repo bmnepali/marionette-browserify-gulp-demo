@@ -1,14 +1,8 @@
 Marionette = require 'backbone.marionette'
 Radio = require '../../radio'
+BookControllerBase = require './controller_actions/base'
 ListBooks = require './controller_actions/list_books'
 
-module.exports = Marionette.Controller.extend
-  initialize: ->
-    @setHandlers()
-
+module.exports = BookControllerBase.extend
   listBooks: ListBooks
 
-  setHandlers: ->
-    Radio.vent.on 'global', 'library:show', =>
-      Backbone.history.navigate 'library'
-      @listBooks()

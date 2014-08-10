@@ -1,3 +1,3 @@
 Backbone = require 'backbone'
 
-module.exports = Backbone.Model
+module.exports = Backbone.Model.extend {}

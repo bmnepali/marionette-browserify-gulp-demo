@@ -8,3 +8,4 @@ module.exports = Marionette.ItemView.extend
 
   search: ->
     searchTerm = @$('#searchTerm').val().trim()
+    console.log searchTerm

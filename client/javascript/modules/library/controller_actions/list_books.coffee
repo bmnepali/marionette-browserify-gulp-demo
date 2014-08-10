@@ -4,6 +4,7 @@ $ = require 'jquery'
 
 SearchView = require '../views/search_view'
 LayoutView = require '../views/layout_view'
+BookListView = require '../views/book_list_view'
 
 Books = require '../collections/books'
 
@@ -13,14 +14,16 @@ module.exports = ->
   layoutView = new LayoutView()
   searchView = new SearchView()
 
-  fetchBooks = new Books()
-  lala = fetchBooks.search('marketing')
-  console.log lala
+  fetchingBooks = Radio.reqres.request 'global', "books:search", searchTerm: 'marketing'
 
-  layoutView.on 'show', ->
-    @searchRegion.show searchView
-    # @booksRegion.show listContactsView
+  $.when(fetchingBooks).done (collection) =>
+    bookListView = new BookListView {collection}
+    layoutView.on 'show', ->
+      @searchRegion.show searchView
+      @booksRegion.show bookListView
+    @options.mainRegion.show(layoutView)
+  .fail ->
+    console.log 'unprocessed error'
 
-  @options.mainRegion.show(layoutView)
   Radio.commands.execute "global", "set:active:header", "library"
 
