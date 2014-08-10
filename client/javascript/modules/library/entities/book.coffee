@@ -2,53 +2,48 @@ Marionette = require 'backbone.marionette'
 Radio = require '../../../radio'
 Books = require '../collections/books'
 
-books = 'undefined'
+books = null
 
 module.exports =
   initialize: ->
-    @maxResults = 40
+    @setHandlers()
+    @maxResults = 5
     @page = 0
     @loading = false
     @totalItems = null
-    @setHandlers()
 
-  searchBooks: (options) ->
+  fetchBooks: (searchTerm) ->
     @page = 0
     self = @
-    searchTerm = options.searchTerm
     defer = $.Deferred()
 
-    books = new Books()
+    response = @searchBooks(searchTerm)
 
-    response = @fetchBooks(searchTerm)
-
-    response.done (res) ->
-      if res.totalItems is 0
+    response.done (data) ->
+      mungedData = []
+      if data.totalItems is 0
         return []
 
-      if res.items
+      if data.items
         @page++
-        @totalItems = res.totalItems
-        # searchResults = []
-        _.each(res.items, (item) ->
+        @totalItems = data.totalItems
+        _.each(data.items, (item) ->
           thumbnail = null
           thumbnail = item.volumeInfo.imageLinks.thumbnail if item.volumeInfo and item.volumeInfo.imageLinks and item.volumeInfo.imageLinks.thumbnail
-          books.add
-            thumbnail: thumbnail
-            title: item.volumeInfo.title
-            publishedDate: item.volumeInfo.publishedDate
-            description: item.volumeInfo.description
+          mungedData.push
+            thumbnail: thumbnail,
+            title: item.volumeInfo.title,
+            subtitle: item.volumeInfo.subtitle,
+            description: item.volumeInfo.description,
             googleId: item.id
-          # book = new Book
-          #   thumbnail: thumbnail
-          #   title: item.volumeInfo.title
-          #   publishedDate: item.volumeInfo.publishedDate
-          #   description: item.volumeInfo.description
-          #   googleId: item.id
-          # searchResults[searchResults.length] = book
         )
+
+        if books
+          books.reset(mungedData)
+        else
+          books = new Books(mungedData)
+
         self.loading is false
-        # defer.resolveWith(response, [searchResults])
         defer.resolveWith(response, [books])
 
     response.fail ->
@@ -56,7 +51,7 @@ module.exports =
 
     defer.promise()
 
-  fetchBooks: (searchTerm) ->
+  searchBooks: (searchTerm) ->
     return true if @loading is true
     @loading is true
     self = @
@@ -68,5 +63,8 @@ module.exports =
       data: 'q=' + query
 
   setHandlers: ->
-    Radio.reqres.setHandler "global", "books:search", (options) =>
-      @searchBooks(options)
+    Radio.reqres.setHandler "global", "books:search", (searchTerm) =>
+      @fetchBooks(searchTerm)
+
+    Radio.vent.on 'global', 'search:term', (searchTerm) =>
+      @fetchBooks(searchTerm)

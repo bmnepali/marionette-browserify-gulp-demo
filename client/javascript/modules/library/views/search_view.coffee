@@ -1,4 +1,5 @@
 Marionette = require 'backbone.marionette'
+Radio = require '../../../radio'
 
 module.exports = Marionette.ItemView.extend
   template: require './templates/search_bar'
@@ -9,3 +10,8 @@ module.exports = Marionette.ItemView.extend
   search: ->
     searchTerm = @$('#searchTerm').val().trim()
     console.log searchTerm
+
+  search: (e) ->
+    e.preventDefault()
+    searchTerm = @$('#searchTerm').val().trim()
+    @trigger('books:search', searchTerm)
