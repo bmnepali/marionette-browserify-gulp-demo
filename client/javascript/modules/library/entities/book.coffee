@@ -18,6 +18,7 @@ module.exports =
     defer = $.Deferred()
 
     response = @searchBooks(searchTerm)
+    Radio.vent.trigger 'global', 'search:start'
 
     response.done (data) ->
       mungedData = []
@@ -37,6 +38,8 @@ module.exports =
             description: item.volumeInfo.description,
             googleId: item.id
         )
+
+        Radio.vent.trigger 'global', 'search:stop'
 
         if books
           books.reset(mungedData)
