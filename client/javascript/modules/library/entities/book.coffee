@@ -42,7 +42,10 @@ module.exports =
         Radio.vent.trigger 'global', 'search:stop'
 
         if books
-          books.reset(mungedData)
+          if mungedData < 1
+            Radio.vent.trigger 'global', 'search:noResults'
+          else
+            books.reset(mungedData)
         else
           books = new Books(mungedData)
 
@@ -66,8 +69,5 @@ module.exports =
       data: 'q=' + query
 
   setHandlers: ->
-    Radio.reqres.setHandler "global", "books:search", (searchTerm) =>
-      @fetchBooks(searchTerm)
-
-    Radio.vent.on 'global', 'search:term', (searchTerm) =>
+    Radio.reqres.setHandler "global", "search:term", (searchTerm) =>
       @fetchBooks(searchTerm)

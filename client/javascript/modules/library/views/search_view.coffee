@@ -16,4 +16,8 @@ module.exports = Marionette.ItemView.extend
   search: (e) ->
     e.preventDefault()
     searchTerm = @$('#searchTerm').val().trim()
-    @trigger('books:search', searchTerm)
+    if searchTerm.length > 0
+      Radio.vent.trigger 'global', 'search:removeMessage'
+      @trigger('books:search', searchTerm)
+    else
+      Radio.vent.trigger 'global', 'search:noSearchTerm'

@@ -14,7 +14,7 @@ module.exports = ->
   layoutView = new LayoutView()
   searchView = new SearchView()
 
-  fetchingBooks = Radio.reqres.request 'global', "books:search", 'marketing'
+  fetchingBooks = Radio.reqres.request 'global', "search:term", 'marketing'
 
   $.when(fetchingBooks).done (collection) =>
     bookListView = new BookListView {collection}
@@ -25,7 +25,8 @@ module.exports = ->
     @options.mainRegion.show(layoutView)
 
     searchView.on 'books:search', (searchTerm) ->
-      Radio.vent.trigger 'global', 'search:term', searchTerm
+      Radio.reqres.request 'global', 'search:term', searchTerm
+
   .fail ->
     console.log 'unprocessed error'
 
