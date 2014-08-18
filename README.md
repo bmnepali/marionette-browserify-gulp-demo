@@ -1,30 +1,31 @@
-Marionette Browserify Gulp Express Starter
+Marionette Browserify Gulp Demo
 ============
 
 Includes the following tools, tasks, and workflows:
 
-- Marionette
-- Browserify
-- Watchify
-- Nodemon
+- Marionette (from bower)
+- Browserify (with browserify-shim)
+- Watchify (caching version of browserify for super fast rebuilds)
+- Nodemon (reloads mock API server)
 - Compass
-- CoffeeScript
-- Handlebars
+- CoffeeScript (with source mapping!)
+- Handlebars (as a backbone dependency)
+- Non common-js vendor code (like a jQuery plugin)
 - LiveReload
 - Static Server
 - Image optimization
 - Error Notifications in Notification Center
+- Express (from npm)
 - Karma with Mocha tests using Browserify to bundle a test runner.
+- Test coverage using Istanbul through Karma-coverage.
 
 Also includes the following demo apps:
 
-- Todo demo from Marionetteify
-- Library app demonstrating search feature from backbone.marionette-atinux-books
-- Contacts demo using backbone.localStorage from "Marionette: A Gentle Introduction" book
-- Contacts demo using a rails remote server from "Marionette: A Serious Progression" book
+- Todo demo (Marionetteify)
+- Library app demonstrating search feature (backbone.marionette-atinux-books)
+- Contacts demo using backbone.localStorage("Marionette: A Gentle Introduction" book)
+- Contacts demo using a rails remote server ("Marionette: A Serious Progression" book)
 - Contacts demo using remote server + backgrid + backbone.paginator
-
-You can find more about these demo apps in the sources reference at the bottom.
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
@@ -36,6 +37,7 @@ Otherwise, you can download and install from [here](http://nodejs.org/download/)
 
 ### Install Gulp Globally
 Gulp must be installed globally in order to use the command line tools.
+```
 npm install -g gulp
 ```
 
@@ -45,6 +47,7 @@ The gulp-compass module relies on Compass already being installed on your system
 gem update --system
 gem install compass
 ```
+
 ### Install npm dependencies
 ```
 npm install
@@ -66,8 +69,7 @@ gulp
 ```
 gulp withMockApi
 ```
-Note: Requires MongoDB running in the backgound. (TODO: change this to another
-data store)
+Note: Requires MongoDB running in the backgound.
 
 ### Run Contacts App with Rails Backend
 Download Rails app - https://github.com/dqdinh/marionette-serious-progression-server/tree/make-CORS-work
@@ -96,8 +98,6 @@ curl -X POST -H 'Content-Type: application/json' -d '{"email":"mail@gmail.com","
 curl -X PUT -H 'Content-Type: application/json' -d '{"email":"mail@gmail.com","phone":"215-123-1234","name":{"first":"newFirstName","last":"newLastName"}}' http://localhost:3000/api/contacts/:id
 curl -X DELETE -H 'Content-Type: application/json' -d http://localhost:3000/api/contacts/:id
 ```
-Note: Replace ':id' with MongoDB id for the PUT and DELETE requests if using
-MongoDB
 
 ### Sources
 - http://viget.com/extend/gulp-browserify-starter-faq
